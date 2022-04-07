@@ -1,0 +1,88 @@
+.introduction{
+    padding: 70px;
+    font-family: 'Antic Didone', serif;
+}
+.introduction-header{
+    
+    font-style: normal;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 63px;
+    letter-spacing: -0.02em;
+    color: #306373;
+    margin-bottom: 20px;
+}
+.introduction-divider{
+    width: 40px;
+    height: 4px;
+    border: 0px;
+    background-color: black;
+}
+.introduction-normal{
+    margin-top: 20px;
+    font-family: 'EB Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 34px;
+    letter-spacing: 0em;
+    text-align: left;
+
+}
+/* .intro-grid-2, .intro-grid-1{
+    border: 1px solid red;
+} */
+.intro-grid-1{
+    padding-top: 0px !important;
+}
+.intro-grid-2{
+    padding-top: 30px;
+}
+.intro-box{
+    background: #FFFFFF;
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.08);
+    height: 90%;
+    width: 100%;
+}
+.intro-box{
+    padding: 30px;
+}
+.intro-inner-box{
+    width: inherit;
+    height: 100%;
+  
+    background: #FFFFFF;
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.08);
+    padding-top: 170px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+.intro-box-text{
+    font-style: normal;
+    font-weight: 900;
+    font-size: 38px;
+    line-height: 48px;
+    background: linear-gradient(275.77deg, #DDA4A8 5.96%, #272658 99.2%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+@media screen and (max-width:768px) {
+    .introduction{
+        padding: 20px;
+    }
+    .introduction-header{
+        font-size: 38px;
+    }
+    .intro-inner-box{
+        height: fit-content;
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+    .intro-box{
+        height: fit-content;
+    }
+    .intro-box-text{
+        font-size: 27px;
+    }
+}

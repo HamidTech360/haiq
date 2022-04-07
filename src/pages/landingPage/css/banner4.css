@@ -1,0 +1,86 @@
+.banner4{
+    padding: 80px;
+    font-family: 'Antic Didone', serif;
+}
+.banner4-box{
+    background-image: url(../../../assets//banner4.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    min-height: 470px;
+}
+.enrinch-box{
+    background: #B6EDF5;
+    padding: 30px;
+    width: 500px;
+   
+}
+.enrich-header{
+    font-size: 37px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+.enrich-divider{
+    border: 0px;
+    width: 40px;
+    background-color: black;
+}
+.enrich-text{
+    margin-top: 20px;
+    font-family: 'EB Garamond', serif;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 27px;
+}
+.btn-enrich{
+    background: rgba(255, 194, 194, 0.95);
+    color: black;
+    border: 0px;
+    width: 200px;
+    height: 55px;
+    margin-top: 30px;
+}
+.banner4-bold{
+    font-size: 35px;
+    font-weight: 500;
+    line-height: 48px;
+    letter-spacing: -0.02em;
+    text-align: center;
+    color: #BE8E9A;
+    padding-top: 40px;
+}
+
+@media screen and (max-width:768px) {
+    .banner4{
+        padding-top: 40px;
+        padding-left: 0px;
+        padding-right: 0px;
+        
+    }
+    .enrinch-box{
+        width: 350px;
+        align-self: left !important;
+        margin-left: 20px;
+    }
+    .banner4-box{
+        padding-left: 20px ;
+    }
+    .enrich-header{
+        font-size: 30px;
+    }
+    .enrich-text{
+        font-size: 15px;
+    }
+    .btn-enrich{
+        width: 120px;
+        height: 60px;
+        font-size: 15px;
+        font-weight: 500;
+    }
+    .banner4-bold{
+        font-size: 20px;
+        line-height: 30px;
+    }
+}

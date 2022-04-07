@@ -1,70 +1,81 @@
-import React from 'react'
-import { NavLink} from 'react-router-dom';
-import {HashLink} from 'react-router-hash-link'
-import SwipeableSideNav from './swipeable-side-nav';
-import GraphicEqIcon from '@material-ui/icons/GraphicEq';
+import React from 'react';
+import { Tab, Tabs, Switch } from '@material-ui/core';
+import {createStyles, makeStyles, Theme} from '@material-ui/core/styles'
 
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap/dist/js/bootstrap.bundle'
-import 'font-awesome/css/font-awesome.css';
+//styles
 import './header.css'
 
-const Header = (props)=>{
+const useStyles = makeStyles((theme)=>
+    createStyles({
+        tabs:{
+            "& .MuiTabs-indicator":{
+                backgroundColor:'#22ED0B',
+                width:'30px'
+            }
+        },
+        switchBase:{
+            color:'black',
+            "&$checked":{
+                color:'red'
+            },
+            "&checked + $track":{
+                backgroundColor:'yellow'
+            },
+            "MuiSwitch-track":{
+                backgroundColor:'yellow'
+            }
+            // "& .Mui-checked":{
+            //     color:'yellow'
+            // },
+            // "& .MuiSwitch-color-secondary":{
+            //     color:'yellow'
+            // }
 
-    return(
-        <div className="headerWrapper">
-           
-                <span className="icon">
-                    <GraphicEqIcon
-                        style = {{
-                            color:'#712fda',
-                            fontSize:'45px'
-                        }}
-                    />
-                    EasyTopUp
-                </span>
-                         
-                 {/* Navbar */}
-                 <span className="hideOnMobile pull-right">
-                        <ul className="nav ">
-                            
-                                <NavLink className="nav-link active" id="nav-1" aria-current="page" to="/">
-                                    <li className="nav-item">Home</li>
-                                </NavLink>
-                                        
-                                 <HashLink className="nav-link" id="nav-2" to="/#services">
-                                     <li className="nav-item">Services</li>
-                                </HashLink>
-                           
-                                 <HashLink className="nav-link " id="nav-3" to="/#features" >
-                                     <li className="nav-item">Features</li>
-                                 </HashLink>
+        }
+    })
+)
 
-                                 <NavLink className="nav-link " id="nav-3" to="/signup" >
-                                     <li className="nav-item">Sign up</li>
-                                 </NavLink>
+const Header = ({handleOpenModal, handleCloseModal}) => {
 
-                                 <NavLink className="nav-link " id="nav-3" to="/" >
-                                     <li className="nav-item">contact US</li>
-                                 </NavLink>
+    const classes = useStyles()
 
-                                 <NavLink className="nav-link " id="nav-3" to="/login" >
-                                     <li className="nav-item">Login</li>
-                                 </NavLink>
-                           
-                        </ul>
-                 </span>
-                 {/* Menu Icon */}
-                 <div className="hideOnDesktop float-right pull-right">
-                    <SwipeableSideNav options={props.options} position="right"/>
-                 </div>
-               
-                   
+    const [value, setValue] = React.useState(0);
+
+    const handleChange = (event, newValue) => {
+      setValue(newValue);
+    };
+
+    return ( 
+        <div className="page-header">
+            <img src="../../assets/logo.png" className='header-logo' alt="logo" />
+            <span className='pull-right switch-label hideOnDesktop' >
+                LIGHT MODE 
+                <Switch 
+                    classes={{
+                        switchBase:classes.switchBase
+                    }}
+                />
+            </span>
+            <div className="pull-right">
+                
+                <Tabs className={classes.tabs}  value={value} onChange={handleChange} aria-label="nav tabs example">
+                    <Tab label="PICK A PHOTO"  onClick={()=>handleOpenModal()}/>
+                    <Tab label="UPLOAD A PHOTO" />
+                    <Tab label="REVIEW"/>
+                </Tabs>
+            </div>
+            <span className='pull-right switch-label hideOnMobile' >
+                LIGHT MODE 
+                <Switch 
+                    classes={{
+                        switchBase:classes.switchBase
+                    }}
+                />
+            </span>
             
            
-         </div>
-        
-    )
+        </div>
+     );
 }
-
+ 
 export default Header;

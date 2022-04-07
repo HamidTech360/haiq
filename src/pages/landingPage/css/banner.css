@@ -1,0 +1,54 @@
+.banner-bg{
+    height: 120vh;
+    width: 100vw;
+    background-image: url(../../../assets/banner1.png);
+   background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding-top: 50px;
+}
+.logo{
+    height: 225px;
+    width: 164px;
+}
+.logo-box{
+    width: fit-content;
+    margin: 0 auto;    
+}
+.banner-text{
+    
+    font-style: normal;
+    font-weight: 400;
+    font-size: 106px;
+    line-height: 134px;
+    letter-spacing: -0.02em;
+    color: #FFFFFF;
+    font-family: 'Antic Didone', serif;
+}
+.btn-create-haik{
+    width: 230px;
+    height: 66px;
+    background: rgba(255, 194, 194, 0.95);
+    color: black;
+    border: 0px;
+    font-size: 20px;
+    font-family: 'EB Garamond', serif;
+    font-weight: 600;
+    margin-top: 50px;
+}
+
+@media screen and (max-width:768px) {
+    .logo{
+        height: 130px;
+        width: 100px;
+    }
+    .banner-text{
+        font-size: 50px;
+        line-height: 70px;
+        margin-top: 50px;
+    }
+}
+
+/* @media screen and (max-width:768px) {
+    
+} */

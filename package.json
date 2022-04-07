@@ -1,7 +1,7 @@
 {
   "name": "vtu",
   "version": "0.1.0",
-  "homepage":"https://vtu.icopystory.com",
+  "homepage": "https://vtu.icopystory.com",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.12.3",
@@ -16,6 +16,7 @@
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
     "react": "^17.0.2",
+    "react-bootstrap": "^2.2.3",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.0.0",
