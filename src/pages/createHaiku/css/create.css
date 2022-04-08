@@ -1,14 +1,19 @@
 .haiku-container{
     min-height: 100vh;
     padding-top: 60px;
-    font-family: 'Antic Didone', serif;
+    /* font-family: 'Antic Didone', serif; */
+    padding-bottom: 40px;
 }
 .image-board{
     width: 600px;
-    height: 300px;
+    height: 500px;
     background-color: white;
     margin: auto;
-   
+   padding: 20px;
+}
+.apiImages{
+    height: 100%;
+    width: 100%;
 }
 .haiku-inputs-box{
    margin-top: 50px;
@@ -45,6 +50,7 @@
     width: 200px;
     margin-right: 20px;
     margin-bottom: 20px;
+    cursor: pointer;
 }
 .btn-back, .btn-upload{
     width: 48%;
@@ -66,6 +72,15 @@
 }
 .baseBtns{
     padding-bottom: 30px;
+}
+.board-img{
+    width: 100%;
+    height: 85%;
+}
+.upload-pics-header{
+    font-size: 15px;
+    font-family: 'Antic Didone', serif;
+    font-weight: 700;
 }
 
 @media screen and (max-width:768px){

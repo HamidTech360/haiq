@@ -1,4 +1,5 @@
 {
     "apiUrl":"http://localhost:4000/api",
-    "-apiUrl":"https://easytopup.herokuapp.com/api"
+    "-apiUrl":"https://easytopup.herokuapp.com/api",
+    "unsplashApi":"https://api.unsplash.com/photos/?client_id=2ZaPD3Yufjdr6hS7dbwHl-t4KALcgkvUGcQKlZz3mPI"
 }

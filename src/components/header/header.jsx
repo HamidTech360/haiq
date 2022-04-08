@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme)=>
     })
 )
 
-const Header = ({handleOpenModal, handleCloseModal}) => {
+const Header = ({handleOpenModal, SwitchMode, mode, triggerClick}) => {
 
     const classes = useStyles()
 
@@ -49,8 +49,10 @@ const Header = ({handleOpenModal, handleCloseModal}) => {
         <div className="page-header">
             <img src="../../assets/logo.png" className='header-logo' alt="logo" />
             <span className='pull-right switch-label hideOnDesktop' >
-                LIGHT MODE 
+                {mode===false?'LIGHT MODE':'DARK MODE'} 
                 <Switch 
+                    checked={mode}
+                    onChange={()=>SwitchMode()}
                     classes={{
                         switchBase:classes.switchBase
                     }}
@@ -59,14 +61,16 @@ const Header = ({handleOpenModal, handleCloseModal}) => {
             <div className="pull-right">
                 
                 <Tabs className={classes.tabs}  value={value} onChange={handleChange} aria-label="nav tabs example">
-                    <Tab label="PICK A PHOTO"  onClick={()=>handleOpenModal()}/>
-                    <Tab label="UPLOAD A PHOTO" />
-                    <Tab label="REVIEW"/>
+                    <Tab label="PICK A PHOTO" style={{fontSize:'14px', fontWeight:'700'}}  onClick={()=>handleOpenModal()}/>
+                    <Tab label="UPLOAD A PHOTO" style={{fontSize:'14px', fontWeight:'700'}} onClick={()=>triggerClick()} />
+                    <Tab label="REVIEW" style={{fontSize:'14px', fontWeight:'700'}} />
                 </Tabs>
             </div>
             <span className='pull-right switch-label hideOnMobile' >
-                LIGHT MODE 
+                {mode===false?'LIGHT MODE':'DARK MODE'} 
                 <Switch 
+                    checked={mode}
+                    onChange={()=>SwitchMode()}
                     classes={{
                         switchBase:classes.switchBase
                     }}

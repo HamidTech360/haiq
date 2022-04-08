@@ -16,9 +16,17 @@
     .page-header{
         padding-right: 10px;
         padding-left: 10px;
+        min-height:120px;
+      
+    }
+    .header-logo{
+        height: 60px;
+        width: 60px;
+        margin-top: 10px;
     }
     .switch-label{
         align-items: center !important;
         align-self: left;
+        font-weight: 600;
     }
 }
