@@ -5,9 +5,12 @@ import { Link } from 'react-router-dom';
 import '../css/banner4.css'
 
 const Banner4 = () => {
+    const images = ['banner4.png', 'banner4b.png', 'banner4c.png']
+    const randomNo = Math.round(Math.random() *2)
+    console.log(randomNo);
     return ( 
         <div className="banner4">
-            <div className="banner4-box ">
+            <div className="banner4-box " style={{backgroundImage:`url(./assets/${images[randomNo]})`}}>
                 <div className="enrinch-box pull-right">
                     <div className="enrich-header">Enrich the mind</div>
                     <button className="enrich-divider"></button>

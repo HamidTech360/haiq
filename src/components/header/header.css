@@ -1,6 +1,7 @@
 .header-logo{
     height: 100px;
     width: 70px;
+    cursor: pointer;
 }
 .page-header{
     padding-left: 40px;

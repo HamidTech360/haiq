@@ -1,4 +1,5 @@
 import React, {useState, useRef, useContext, useEffect} from 'react'
+import { syllable } from 'syllable'
 import UserContext from '../../context/userContext'
 import Modal from 'react-bootstrap/Modal'
 import axios from 'axios'
@@ -16,7 +17,7 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection}
     const data = useContext(UserContext)
     const [openModal, setOpenModal] = useState(false);
     const [apiImages, setAPiImages] = useState([])
-    const [mode, setMode] = useState(false)
+    const [mode, setMode] = useState(true)
 
     useEffect(()=>{
         async function getImages (){
@@ -59,7 +60,20 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection}
     const triggerClick = ()=>{
         imgRef.current.click()
     }
-  
+
+    const handleInputChange = (e, allowedSyllable)=>{
+        handleChange(e)
+        const value = e.currentTarget.value
+        const noOfSyllable = syllable(value)
+        if(noOfSyllable >= allowedSyllable) e.currentTarget.readOnly= true
+
+        console.log( noOfSyllable);
+    }
+
+    
+    const allowEdit = (e)=>{
+        e.currentTarget.readOnly = false
+    }
    
 
     
@@ -75,11 +89,13 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection}
                 SwitchMode={SwitchMode}
                 triggerClick={triggerClick}
                 mode = {mode}
+                activeTab={0}
             />
             <input 
                 onChange = {(e)=>handleImgSelection(e)}
                 type="file" ref={imgRef} 
-                style={{display:'none'}}/>
+                style={{display:'none'}}
+            />
             <div className="haiku-container" style={{backgroundImage: mode==false? 'url(./assets/lightBg.png)':'url(./assets/darkBg.png)', backgroundSize:'cover'}}>
                 
                 <div className="image-board">
@@ -96,24 +112,40 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection}
                 <div className="haiku-inputs-box text-center" >
                     <div className="haiku-form-group">
                         <input 
+                            readOnly={false}
                             type="text"
                             name="line1" 
-                            onChange={(e)=>handleChange(e)}
+                            onChange={(e)=>handleInputChange(e, 5)}
+                            value={data.line1}
+                            onClick={(e)=>allowEdit(e)}
                             className="haiku-input"/>
+                            <div className="warning-text" style={{color:!mode?'black':'white'}}>
+                                Text can not be more than 5 syllables
+                            </div>
                     </div>
                     <div className="haiku-form-group">
                         <input 
-                             name="line2" 
-                             onChange={(e)=>handleChange(e)}
+                            name="line2" 
+                            value={data.line2}
+                            onChange={(e)=>handleInputChange(e, 7)}
+                            onClick={(e)=>allowEdit(e)}
                             type="text" 
                             className="haiku-input"/>
+                            <div className="warning-text" style={{color:!mode?'black':'white'}}>
+                                Text can not be more than 7 syllables
+                            </div>
                     </div>
                     <div className="haiku-form-group">
                         <input 
                              name="line3" 
-                             onChange={(e)=>handleChange(e)}
+                             value={data.line3}
+                             onChange={(e)=>handleInputChange(e, 5)}
+                             onClick={(e)=>allowEdit(e)}
                             type="text" 
                             className="haiku-input"/>
+                              <div className="warning-text" style={{color:!mode?'black':'white'}}>
+                                Text can not be more than 5 syllables
+                            </div>
                     </div>
                 </div>
             </div>

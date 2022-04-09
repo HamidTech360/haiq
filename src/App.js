@@ -2,6 +2,7 @@ import React, {useState, useRef} from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LandingPage from './pages/landingPage/landing';
 import CreateHaiku from './pages/createHaiku/create';
+import ReviewHaiku from './pages/ReviewHaiku/review';
 
 import UserContext from './context/userContext';
 
@@ -23,7 +24,7 @@ function App() {
     const clone= {...data}
     clone[e.currentTarget.name] = e.currentTarget.value
     setData(clone)
-    console.log(data);
+    //console.log(data);
   }
 
   const handleImgSelection = (e)=>{
@@ -55,6 +56,7 @@ function App() {
                                               handleModalImgSelection={handleModalImgSelection}
                                               handleChange={handleChange} 
                                               handleImgSelection={handleImgSelection} />}/>
+            <Route path="/review" element={<ReviewHaiku/>}/>
             <Route path="/" element={<LandingPage/>}/>
           </Routes>
         </BrowserRouter>

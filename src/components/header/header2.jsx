@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme)=>
     })
 )
 
-const Header = ({handleOpenModal, SwitchMode, mode, triggerClick, activeTab}) => {
+const Header2 = ({ SwitchMode, mode, activeTab}) => {
 
     const classes = useStyles()
 
@@ -64,8 +64,8 @@ const Header = ({handleOpenModal, SwitchMode, mode, triggerClick, activeTab}) =>
             <div className="pull-right">
                 
                 <Tabs value={activeTab} className={classes.tabs}   onChange={handleChange} aria-label="nav tabs example">
-                    <Tab label="PICK A PHOTO" style={{fontSize:'13px', fontWeight:'700'}}  onClick={()=>handleOpenModal()}/>
-                    <Tab label="UPLOAD A PHOTO" style={{fontSize:'13px', fontWeight:'700'}} onClick={()=>triggerClick()} />
+                    <Link to="/create"  style={{color:'initial', textDecoration:'none'}}><Tab label="PICK A PHOTO" style={{fontSize:'13px', fontWeight:'700'}} /></Link>
+                    <Link to="/create" style={{color:'initial', textDecoration:'none'}}><Tab label="UPLOAD A PHOTO" style={{fontSize:'13px', fontWeight:'700'}} /></Link>
                     <Link to="/review"  style={{color:'initial', textDecoration:'none'}}><Tab label="REVIEW" style={{fontSize:'14px', fontWeight:'700'}} /></Link>
                 </Tabs>
             </div>
@@ -85,4 +85,4 @@ const Header = ({handleOpenModal, SwitchMode, mode, triggerClick, activeTab}) =>
      );
 }
  
-export default Header;
+export default Header2;

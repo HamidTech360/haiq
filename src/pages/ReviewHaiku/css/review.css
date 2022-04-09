@@ -1,0 +1,38 @@
+#preview-board{
+    padding: 0px;
+    min-height: 600px;
+    padding-bottom: 40px;
+}
+.review-texts{
+    font-family: 'Antic Didone', serif;
+    font-weight: 700;
+    font-size: 15px;
+    margin-top: 20px;
+    padding-bottom: 40px;
+}
+.review-btns{
+    width: 600px;
+    margin: auto;
+    margin-top: 40px;
+}
+.btn-continue-editing, .btn-publish{
+    width: 48%;
+    margin-right: 10px;
+    height: 50px;
+    font-size: 20px;
+    font-family: 'Antic Didone', serif;
+    font-weight: 600;
+    border: 0px solid white;
+}
+
+@media screen and (max-width:768px){
+    .review-btns{
+        width: 100%;
+        margin-left: 20px;
+    }
+    .btn-continue-editing, .btn-publish{
+        width: 45%;
+        font-size: 14px;
+        font-weight: 600;
+    }
+}
