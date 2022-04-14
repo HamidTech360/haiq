@@ -87,6 +87,7 @@
     font-weight: 700;
 }
 
+
 @media screen and (max-width:768px){
     .image-board{
         max-width:90% ;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Tab, Tabs, Switch } from '@material-ui/core';
-import {createStyles, makeStyles, Theme} from '@material-ui/core/styles'
+import {createStyles, makeStyles, createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles'
 
 //styles
 import './header.css'
@@ -36,6 +36,24 @@ const useStyles = makeStyles((theme)=>
     })
 )
 
+const theme = createMuiTheme({
+    overrides:{
+        MuiSwitch:{
+            track:{
+                "$checked:not($colorPrimary):not(colorSecondary) + &":{
+                    backgroundColor:'#22ED0B'
+                },
+                "$checked$colorPrimary + &":{
+                    backgroundColor:'green'
+                },
+                "$checked$colorSecondary + &":{
+                    backgroundColor:'green'
+                }
+            }
+        }
+    }
+})
+
 const Header = ({handleOpenModal, SwitchMode, mode, triggerClick, activeTab}) => {
 
     const classes = useStyles()
@@ -54,6 +72,7 @@ const Header = ({handleOpenModal, SwitchMode, mode, triggerClick, activeTab}) =>
             <span className='pull-right switch-label hideOnDesktop' >
                 {mode===false?'LIGHT MODE':'DARK MODE'} 
                 <Switch 
+                   
                     checked={mode}
                     onChange={()=>SwitchMode()}
                     classes={{
@@ -71,13 +90,17 @@ const Header = ({handleOpenModal, SwitchMode, mode, triggerClick, activeTab}) =>
             </div>
             <span className='pull-right switch-label hideOnMobile' >
                 {mode===false?'LIGHT MODE':'DARK MODE'} 
+              
+                <MuiThemeProvider theme= {theme}>
                 <Switch 
+                    color='default'
                     checked={mode}
                     onChange={()=>SwitchMode()}
                     classes={{
                         switchBase:classes.switchBase
                     }}
                 />
+                </MuiThemeProvider>
             </span>
             
            

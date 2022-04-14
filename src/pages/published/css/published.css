@@ -1,0 +1,160 @@
+.published-pg-header{
+    height: 70px;
+    background-color: white;
+    padding-left: 50px;
+}
+.published-body{
+    background-color: #E5E5E5;
+    min-height: 100vh;
+    font-family: 'Antic Didone', serif;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    overflow: hidden;
+}
+.published-header{
+    font-size: 24px;
+    font-weight: 600;
+}
+.share-work{
+    font-size: 20px;
+    margin-top: 40px;
+    font-weight: 500;
+}
+.publish-form-group{
+    margin-top: 40px;
+}
+.published-inpt{
+    width: 60%;
+    height: 50px;
+    border: 1px solid lightgray;
+    background-color: #E5E5E5;
+}
+.btn-copy-link{
+    height: 50px;
+    width: 10%;
+    color: white;
+    background-color: #3B5998;
+    border: 0px;
+    font-size: 16px;
+    margin-left: 20px;
+}
+.social-links{
+    margin-top: 60px;
+}
+.fabs{
+    margin-right: 20px;
+    color: white;
+}
+.days-box{
+    min-height: 120px;
+    background-color: white;
+    margin-right: 100px;
+    margin-left: 100px;  
+    display: flex;
+    flex-direction: row;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 20px;
+    width: fit-content;
+    margin: auto;
+    margin-top: 50px;
+}
+.time{
+    margin-right: 30px;
+    font-size: 18px;
+    font-weight: 600;
+}
+.published-btns{
+    margin-top: 70px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+.btn-memorialize{
+    width: 45%;
+    height: 45px;
+    margin-right: 20px;
+    background-color: black;
+    color: white;
+    border: 0px;
+}
+.btn-view-work{
+    width: 45%;
+    height: 45px;
+    background-color: #ABABAB;
+    color: white;
+    border: 0px;
+}
+.memorialize-modal{
+    padding-top: 50px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 40px;
+    font-family: 'EB Garamond', serif;
+    /* font-family: 'Antic Didone', serif; */
+}
+.memorialize-modal-header{
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+.memorialize-modal-text{
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+.cost-box{
+    margin-top: 30px;
+    font-weight: 700;
+}
+.cost-label{
+    font-size: 27px;
+}
+.cost-price{
+    font-size: 24px;
+}
+.memorialize-modal-btns{
+    margin-top: 50px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+.btn-IWTMMH, .btn-memorialize-cancel{
+    width: 100%;
+    height: 45px;
+}
+
+
+
+
+@media screen and (max-width:768px) {
+    
+    .published-inpt{
+        width: 70%;
+       
+    }
+    .btn-copy-link{
+        width: 20%;
+       margin-left: 0px;
+       font-size: 14px;
+    }
+    .published-header{
+        font-size: 20px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    .share-work{
+        font-size: 15px;
+    }
+    .days-box{
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 70px;
+    }
+    .published-btns{
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+    .btn-view-work, .btn-memorialize{
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}

@@ -25,6 +25,53 @@
     border: 0px solid white;
 }
 
+
+.save-haiku-popup{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    /* font-family: 'Antic Didone', serif; */
+    font-family: 'EB Garamond', serif;
+    padding-left: 150px;
+    padding-right: 150px;
+}
+.save-modal-header{
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 41px;
+    letter-spacing: 0em;
+    text-align: center;
+
+}
+.save-modal-text1{
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 50px;
+}
+.save-modal-text2{
+    margin-top: 20px;
+    font-size: 20px;
+}
+.save-haiku-form-group{
+    margin-top: 50px;
+    font-size: 20px;
+}
+.email-inpt{
+    height: 40px;
+    width: 100%;
+    border: 1px solid lightgray;
+}
+
+.btn-continue-publish{
+    width: 100%;
+    height: 40px;
+    margin-top: 30px;
+    background-color: black;
+    border: 0px;
+    color: white;
+    font-size: 20px;
+}
+
+
 @media screen and (max-width:768px){
     .review-btns{
         width: 100%;
@@ -34,5 +81,21 @@
         width: 45%;
         font-size: 14px;
         font-weight: 600;
+    }
+    .save-haiku-popup{
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    .save-modal-header{
+        font-size: 30px;
+    }
+    .save-modal-text1, .save-modal-text2{
+        font-size: 15px;
+    }
+    .save-haiku-form-group{
+        font-size: 16px;
+    }
+    .btn-continue-publish{
+        font-size: 20px;
     }
 }

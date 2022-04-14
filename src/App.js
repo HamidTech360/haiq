@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LandingPage from './pages/landingPage/landing';
 import CreateHaiku from './pages/createHaiku/create';
 import ReviewHaiku from './pages/ReviewHaiku/review';
+import Published from './pages/published/published';
 
 import UserContext from './context/userContext';
 
@@ -56,6 +57,7 @@ function App() {
                                               handleModalImgSelection={handleModalImgSelection}
                                               handleChange={handleChange} 
                                               handleImgSelection={handleImgSelection} />}/>
+            <Route path="/published" element={<Published/>}/>
             <Route path="/review" element={<ReviewHaiku/>}/>
             <Route path="/" element={<LandingPage/>}/>
           </Routes>

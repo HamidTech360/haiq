@@ -72,7 +72,11 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection}
 
     
     const allowEdit = (e)=>{
-        e.currentTarget.readOnly = false
+        const target = e.currentTarget
+        target.readOnly = false
+
+        // data[target.name]
+        
     }
    
 
@@ -169,6 +173,7 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection}
                        <button className="btn-upload" onClick={()=>handleCloseModal()}>Upload</button>
                    </div>
             </Modal>:''}
+
           
         </div>
     )
