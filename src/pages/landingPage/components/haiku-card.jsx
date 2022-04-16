@@ -5,7 +5,8 @@ import '../css/haiku-card.css'
 
 const HaikuCard = () => {
     return ( 
-        <div className="haiku-cards">
+        <div>
+        <div className="haiku-cards text-center">
             <div className="haik-card">
                 <div className="haiku-card-text">
                      Over the wintry Forest, wind howl in rage with no leaves to blow
@@ -32,6 +33,7 @@ const HaikuCard = () => {
                     -Kobayashi Issa, “A World of Dew”
                 </div>
             </div>
+        </div>
         </div>
      );
 }

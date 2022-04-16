@@ -2,21 +2,19 @@
     margin-top: 30px;
     background: #F4F4F4;
     padding-left: 70px;
-    padding-right: 40px;
+    padding-right: 20px;
     padding-bottom: 60px;
 }
 .footer-logo{
     height: 225px;
     width: 164px;
 }
-.footer-flex{
-    display: flex;
-    flex-direction: row;
-}
+
 .footer-text{
     padding-top: 150px;
     margin-left: 60px;
 }
+
 .footer-text-item{
     font-family: 'Antic Didone', serif;
     font-weight: 600;
@@ -24,7 +22,7 @@
     margin-right: 30px;
 }
 .copy-right{
-    margin-left: 200px;
+    
     font-style: italic;
     
 }

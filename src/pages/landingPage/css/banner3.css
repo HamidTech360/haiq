@@ -43,7 +43,7 @@
     position: relative;
     top: 120px;
     margin-left: 100px;
-    margin-right: 250px;
+    margin-right: 280px;
 }
 .HIW-item{
     width: 170px;
@@ -75,11 +75,48 @@
     padding-top: 80px;
 }
 
+@media screen and (max-width:1115px) and (min-width:769px){
+    .broken-line{
+        margin-right: 200px;
+    }
+}
+@media screen and (max-width:960px) and (min-width:769px){
+   .fab{
+       padding: 20px;
+   }
+   .broken-line{
+       top: 100px;
+   }
+}
+@media screen and (max-width:845px) and (min-width:769px){
+    .HIW-vector{
+        height: 37px;
+        width: 37px;
+    }
+ }
+ @media screen and (max-width:768px) and (min-width:520px){
+    .broken-line{
+        margin-right: 150px;
+    }
+ }
+
+ @media screen and (max-width:519px) and (min-width:402px) {
+     .broken-line{
+         margin-right: 50px;
+     }
+ }
+
+@media screen and (max-width:400px) {
+    .broken-line{
+        margin-right: 50px;
+    }
+}
+
 @media screen and (max-width:768px) {
     .broken-line{
         top: 80px;
         margin-left: 20px;
-        margin-right: 40px;
+        /* margin-right: 40px; */
     }
     .banner3-header{
         font-size: 37px;
@@ -95,7 +132,7 @@
        padding-left: 10px;
    }
    .HIW-item{
-       margin-right: 25px;
+       margin-right: 20px;
    }
    .HIW-text{
        font-size: 12px;

@@ -10,8 +10,9 @@ const Banner4 = () => {
     console.log(randomNo);
     return ( 
         <div className="banner4">
-            <div className="banner4-box " style={{backgroundImage:`url(./assets/${images[randomNo]})`}}>
-                <div className="enrinch-box pull-right">
+            <div className="banner4-box row" style={{backgroundImage:`url(./assets/${images[randomNo]})`}}>
+                <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12"></div>
+                <div className="enrinch-box col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div className="enrich-header">Enrich the mind</div>
                     <button className="enrich-divider"></button>
                     <div className="enrich-text">
