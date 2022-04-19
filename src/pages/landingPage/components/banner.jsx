@@ -19,7 +19,7 @@ const Banner = () => {
                 <div className="banner-text text-center">elegant expression</div>
                 <div className="text-center">
                     <Link to="create">
-                        <button className="btn-create-haik">Create a Haiku</button>
+                        <button className="btn-create-haik">Create a HAIQ</button>
                     </Link>
                 </div>
                 

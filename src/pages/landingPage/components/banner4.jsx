@@ -20,13 +20,13 @@ const Banner4 = () => {
                         Sharp depiction is key to a sophisticated soul.
                     </div>
                     <Link to="create">
-                       <button className="btn-enrich">Create A Haiku</button>
+                       <button className="btn-enrich">Create A HAIQ</button>
                     </Link>
                     
                 </div>
             </div>
 
-            <div className="banner4-bold">Publish for free for 17 days only or memorialize forever</div>
+            <div className="banner4-bold">Free to publish for 17 days or memorialize forever</div>
         </div>
      );
 }

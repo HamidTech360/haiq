@@ -16,7 +16,7 @@
 }
 
 .footer-text-item{
-    font-family: 'Antic Didone', serif;
+    font-family: 'Didot', serif;
     font-weight: 600;
     color: black;
     margin-right: 30px;
@@ -40,7 +40,7 @@
     }
     .footer{
         padding-left: 20px;
-        padding-bottom: 30px;
+        padding-bottom: 50px;
     }
     .footer-logo{
         width: 100px;
@@ -48,17 +48,17 @@
     }
     .footer-text{
         padding-top: 100px;
-        margin-left: 20px;
+        margin-left: 0px;
     }
     .footer-text-item{
         font-size: 12px;
-        margin-right: 15px;
+        margin-right: 7px;
     }
     .copy-right{
         margin-left: 0px !important;
         font-size: 13px;
     }
     .copy-right-mobile{
-        margin-top: 30px;
+        margin-top: -20px;
     }
 }
