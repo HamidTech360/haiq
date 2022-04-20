@@ -5,9 +5,9 @@ import HaikuCard from './haiku-card';
 import Introduction from './introduction';
 
 //styles
-import '../css/banner2.css'
+import '../css/definition.css'
 
-const Banner2 = () => {
+const Definition = () => {
     return ( 
         <div className="banner-2">
             <div className="what-is-haiku">
@@ -34,4 +34,4 @@ const Banner2 = () => {
      );
 }
  
-export default Banner2;
+export default Definition;

@@ -1,0 +1,42 @@
+.haiku{
+    min-height: 100vh;
+    background-image: url(../../../assets/lightBg.png);
+    padding-bottom: 120px;
+    font-family: 'Georgia', sans-serif;
+}
+.haiku-header{
+    height: 70px;
+    background-color: white;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    padding-right: 60px;
+    padding-left: 80px;
+}
+.btn-share{
+   background-color: #22ED0B;
+   font-size: 15px;
+   border: 0px;
+   width: 100px;
+   height: 100%;
+}
+.haiku-board{
+    margin-top: 70px;
+    margin-left: 70px;
+    margin-right: 70px;
+    background-color: white;
+    padding-bottom: 30px;
+}
+.haiku-image{
+    height: 500px;
+    width: 100%;
+}
+.haiku-text{
+    padding-bottom: 40px;
+    padding-top: 40px;
+    padding-left: 30px;
+    padding-right: 50px;
+    font-size: 20px;
+}
+.share{
+    margin-left: 5px;
+}

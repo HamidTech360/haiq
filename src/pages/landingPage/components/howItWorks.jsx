@@ -1,9 +1,9 @@
 import React from 'react';
 
 //styles
-import '../css/banner3.css'
+import '../css/howItWorks.css'
 
-const Banner3 = () => {
+const HowItWorks = () => {
    
     return ( 
         <div className="banner3">
@@ -73,4 +73,4 @@ const Banner3 = () => {
      );
 }
  
-export default Banner3;
+export default HowItWorks;

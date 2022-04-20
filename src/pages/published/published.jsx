@@ -10,7 +10,14 @@ import Modal from 'react-bootstrap/Modal'
 import './css/published.css'
 
 const Published = () => {
-    const [memorializeModal, setMemorializeModal] = useState(true)
+    const [memorializeModal, setMemorializeModal] = useState(false)
+    const [authorship, setAuthorship] = useState(false)
+
+    const AuthorshipDisplay = ()=>{
+        setMemorializeModal(false)
+        setAuthorship(true)
+    }
+    
     return ( 
         <div className="published">
             <div className="published-pg-header">
@@ -76,7 +83,7 @@ const Published = () => {
                 </div>
 
                 <div className="published-btns">
-                    <button className="btn-memorialize">Memorialize Forever <RiErrorWarningLine/> </button>
+                    <button className="btn-memorialize" onClick={()=>setMemorializeModal(true)} >Memorialize Forever <RiErrorWarningLine/> </button>
                     <button className="btn-view-work">View Your Work</button>
                 </div>
 
@@ -98,9 +105,39 @@ const Published = () => {
                     </div>
 
                     <div className="memorialize-modal-btns">
-                        <button className="btn-IWTMMH">I want to memorialize my Haiq</button>
-                        <button className="btn-memorialize-cancel">Cancel</button>
+                        <button className="btn-IWTMMH" onClick={()=>AuthorshipDisplay()} >I want to memorialize my Haiq</button>
+                        <button className="btn-memorialize-cancel" onClick={()=>setMemorializeModal(false)}>Cancel</button>
                     </div>
+                </div>
+            </Modal>
+
+            <Modal show={authorship}>
+                <div className="memorialize-modal" id="authorship-modal">
+                    <div className="pull-righ skip">
+                        <span className="pull-right" onClick={()=>setAuthorship(false)}>Skip</span>
+                    </div>
+                    <div className="memorialize-modal-header text-center">Authorship</div>
+                    <div className="memorialize-modal-text text-center">
+                        Sign your masterpiece in 17 characters. 
+                    </div>
+
+                    <div className="save-haiku-form-group" id="authorship-form-group">
+                        <label htmlFor="email">Author</label>
+                        <div >
+                            <input 
+                                
+                                type="text" 
+                                className='email-inpt'
+                                name='email-inpt'
+
+                            />
+                        </div>
+                        <button className="btn-IWTMMH" style={{marginTop:'20px'}}>Finish</button>
+                    </div>
+
+                    {/* <div className="memorialize-modal-btns">
+                        <button className="btn-IWTMMH">Finish</button>
+                    </div> */}
                 </div>
             </Modal>
         </div>

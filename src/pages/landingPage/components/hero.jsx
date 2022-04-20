@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 //styles
-import '../css/banner.css'
+import '../css/hero.css'
 
-const Banner = () => {
+const Hero = () => {
 
     const images = ['banner1.png', 'banner1b.png', 'banner1c.png']
     const randomNo = Math.round(Math.random() *2)
@@ -28,4 +28,4 @@ const Banner = () => {
      );
 }
  
-export default Banner;
+export default Hero;

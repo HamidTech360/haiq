@@ -4,6 +4,7 @@ import LandingPage from './pages/landingPage/landing';
 import CreateHaiku from './pages/createHaiku/create';
 import ReviewHaiku from './pages/ReviewHaiku/review';
 import Published from './pages/published/published';
+import Haiku from './pages/haiku/haiku';
 
 import UserContext from './context/userContext';
 
@@ -46,23 +47,27 @@ function App() {
   const handleModalImgSelection = (item)=>{
     const clone = {...data}
     clone['imageUrl'] = item.urls.raw
+    clone['image'] = 'none'
     setData(clone)
     console.log(clone);
   }
   return ( 
-      <UserContext.Provider value={data}>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/create" element={<CreateHaiku 
-                                              handleModalImgSelection={handleModalImgSelection}
-                                              handleChange={handleChange} 
-                                              handleImgSelection={handleImgSelection} />}/>
-            <Route path="/published" element={<Published/>}/>
-            <Route path="/review" element={<ReviewHaiku/>}/>
-            <Route path="/" element={<LandingPage/>}/>
-          </Routes>
-        </BrowserRouter>
-      </UserContext.Provider>
+
+          <UserContext.Provider value={data}>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/create" element={<CreateHaiku 
+                                                handleModalImgSelection={handleModalImgSelection}
+                                                handleChange={handleChange} 
+                                                handleImgSelection={handleImgSelection} />}/>
+              <Route path="/published" element={<Published/>}/>
+              <Route path="/haiku" element={<Haiku/>}/>
+              <Route path="/review" element={<ReviewHaiku/>}/>
+              <Route path="/" element={<LandingPage/>}/>
+            </Routes>
+          </BrowserRouter>
+        </UserContext.Provider>
+     
   );
 }
 

@@ -120,13 +120,39 @@
 .btn-IWTMMH, .btn-memorialize-cancel{
     width: 100%;
     height: 45px;
+    margin-bottom: 20px;
+    border: 1px solid black;
+}
+.btn-IWTMMH{
+    background-color: black;
+    color: white;
+}
+.btn-memorialize-cancel{
+    background-color: white;
+    color: black;
+    font-weight: 600;
+}
+#authorship-form-group{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+#authorship-modal{
+    padding-top: 10px;
+}
+.skip{
+    margin-bottom: 50px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
 }
 
 
 
-
 @media screen and (max-width:768px) {
-    
+    #authorship-form-group{
+        padding-left: 0px;
+        padding-right: 0px;
+    }
     .published-inpt{
         width: 70%;
        

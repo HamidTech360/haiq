@@ -67,7 +67,7 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection}
         const noOfSyllable = syllable(value)
         if(noOfSyllable >= allowedSyllable) e.currentTarget.readOnly= true
 
-        console.log( noOfSyllable);
+        //console.log( noOfSyllable);
     }
 
     

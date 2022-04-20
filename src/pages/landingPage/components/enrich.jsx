@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 //styles
-import '../css/banner4.css'
+import '../css/enrich.css'
 
-const Banner4 = () => {
+const Enrich = () => {
     const images = ['banner4.png', 'banner4b.png', 'banner4c.png']
     const randomNo = Math.round(Math.random() *2)
     console.log(randomNo);
@@ -31,4 +31,4 @@ const Banner4 = () => {
      );
 }
  
-export default Banner4;
+export default Enrich;

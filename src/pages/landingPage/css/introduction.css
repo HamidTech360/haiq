@@ -3,7 +3,7 @@
     padding-right: 30px;
     padding-top: 30px;
     padding-bottom: 30px;
-    font-family: 'Antic Didone', serif;
+    
 }
 .introduction-header{
     
@@ -23,13 +23,13 @@
 }
 .introduction-normal{
     margin-top: 20px;
-    font-family: 'Georgia', sans-serif;;
-    font-size: 20px;
+    font-family: 'Georgia', sans-serif;
+    font-size: 30px;
     font-weight: 400;
-    line-height: 34px;
+    line-height: 50px;
     letter-spacing: 0em;
     text-align: left;
-    font-style: italic;
+    font-style: italic !important;
 
 }
 /* .intro-grid-2, .intro-grid-1{
@@ -78,6 +78,10 @@
     }
     .introduction-header{
         font-size: 38px;
+    }
+    .introduction-normal{
+        font-size: 23px;
+        line-height:35px ;
     }
     .intro-inner-box{
         height: fit-content;

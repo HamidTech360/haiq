@@ -1,10 +1,10 @@
 import React from 'react'
 
 //components
-import Banner from './components/banner'
-import Banner2 from './components/banner2'
-import Banner3 from './components/banner3'
-import Banner4 from './components/banner4'
+import Hero from '././components/hero'
+import Definition from './components/definition'
+import HowItWorks from './components/howItWorks'
+import Enrich from './components/enrich'
 import Footer from '../../components/footer/footer'
 
 //styles
@@ -13,10 +13,10 @@ import './css/landing.css'
 const LandingPage = ()=>{
     return(
         <div className="landing-page">
-            <Banner/>
-            <Banner2/>
-            <Banner3/>
-            <Banner4/>
+            <Hero/>
+            <Definition/>
+            <HowItWorks/>
+            <Enrich/>
             <Footer/>
         </div>
     )
