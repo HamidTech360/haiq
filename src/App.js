@@ -13,7 +13,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'font-awesome/css/font-awesome.css'
 
 function App() {
-  
+  const [mode, setMode] = useState(false)
   const [data, setData] = useState({
     line1:'',
     line2:'',
@@ -21,6 +21,10 @@ function App() {
     image:'',
     imageUrl:''
   })
+
+  const SwitchMode = ()=>{
+    setMode(!mode)
+  }
 
   const handleChange = (e)=>{
     const clone= {...data}
@@ -57,12 +61,16 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/create" element={<CreateHaiku 
+                                                mode={mode}
+                                                SwitchMode={SwitchMode}
                                                 handleModalImgSelection={handleModalImgSelection}
                                                 handleChange={handleChange} 
                                                 handleImgSelection={handleImgSelection} />}/>
               <Route path="/published" element={<Published/>}/>
               <Route path="/haiku" element={<Haiku/>}/>
-              <Route path="/review" element={<ReviewHaiku/>}/>
+              <Route path="/review" element={<ReviewHaiku 
+                                                mode={mode}
+                                                SwitchMode={SwitchMode}/>}/>
               <Route path="/" element={<LandingPage/>}/>
             </Routes>
           </BrowserRouter>

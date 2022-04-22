@@ -24,7 +24,7 @@ const Haiku = () => {
                 </div>
             </div>
 
-            <Modal size="xl" show={true}>
+            <Modal style={{marginTop:'70px'}} size="xl" show={true}>
                   <div className="haiku-modal">
                     <div className="memorialize-modal-header text-center">Share your work</div>
                   </div>

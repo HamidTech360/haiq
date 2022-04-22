@@ -1,4 +1,5 @@
-import React, {useState, useContext, useRef} from 'react'
+import React, {useState, useContext, useRef, useEffect} from 'react'
+import {useNavigate} from 'react-router-dom'
 import joi from 'joi-browser'
 import _ from 'lodash'
 import { ToastContainer, toast } from 'react-toastify';
@@ -11,23 +12,15 @@ import Header2 from '../../components/header/header2'
 import './css/review.css'
 import 'react-toastify/dist/ReactToastify.css';
 
-const ReviewHaiku = ()=>{
+const ReviewHaiku = ({mode, SwitchMode})=>{
+ 
     const modalInpt = useRef()
-    const [mode, setMode] = useState(true)
     const [openSaveModal, setOpenSaveModal] = useState(false);
+    const [showError, setShowError] = useState(false)
     const data = useContext(UserContext)
-    const SwitchMode = ()=>{
-        setMode(!mode)
-        //console.log(mode);
-    }
+    const navigate = useNavigate()
 
-    const notify = (message) =>  {
-        toast.error(message, {
-            position: toast.POSITION.BOTTOM_RIGHT
-        });
-    }
-
-    const review = ()=>{
+    useEffect(()=>{
         const schema = {
             line1:joi.string().required(),
             line2:joi.string().required(),
@@ -35,9 +28,17 @@ const ReviewHaiku = ()=>{
             image:joi.required(),
             imageUrl:joi.string().required()
         }
-        const {error} = joi.validate(data, schema)
-        if(error) return notify(error.details[0].message) 
-        console.log(data);
+        const {error} = joi.validate(data, schema, {abortEarly:false})
+        if(error) navigate('/create')
+    },[])
+  
+    const notify = (message) =>  {
+        toast.error(message, {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
+    }
+
+    const review = ()=>{
         
         setOpenSaveModal(true)
     }
@@ -45,7 +46,7 @@ const ReviewHaiku = ()=>{
     const publish = ()=>{
         const userEmail = modalInpt.current.value
         console.log(userEmail);
-        if(!userEmail) return notify('Please enter your email')
+        if(!userEmail) return setShowError(true)
 
         console.log('Connecting to the server...');
     }
@@ -95,7 +96,7 @@ const ReviewHaiku = ()=>{
                         Free publish for 17 days or memorialize forever.
                     </div>
                     <div className="save-haiku-form-group">
-                        <label htmlFor="email">Email</label>
+                        <label htmlFor="email">EMAIL</label>
                         <div >
                             <input 
                                 ref={modalInpt}
@@ -104,6 +105,11 @@ const ReviewHaiku = ()=>{
                                 name='email-inpt'
 
                             />
+
+                        {showError?<div className="warning-text" style={{color:!mode?'#C79398':'#C79398'}}>
+                            {'EMAIL is not allowed to be empty'}
+                        </div>:''}
+
                         </div>
                         <button className="btn-continue-publish" onClick={()=>publish()} >Continue</button>
                         <div className="text-center cancel-modal" onClick={()=>setOpenSaveModal(false)} >Cancel</div>

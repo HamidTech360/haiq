@@ -54,7 +54,7 @@ const theme = createMuiTheme({
     }
 })
 
-const Header = ({handleOpenModal, SwitchMode, mode, triggerClick, activeTab}) => {
+const Header = ({handleOpenModal, SwitchMode, mode, triggerClick, activeTab, handleReview}) => {
 
     const classes = useStyles()
 
@@ -85,7 +85,7 @@ const Header = ({handleOpenModal, SwitchMode, mode, triggerClick, activeTab}) =>
                 <Tabs value={activeTab} className={classes.tabs}   onChange={handleChange} aria-label="nav tabs example">
                     <Tab label="PICK A PHOTO" style={{fontSize:'13px', fontWeight:'700'}}  onClick={()=>handleOpenModal()}/>
                     <Tab label="UPLOAD A PHOTO" style={{fontSize:'13px', fontWeight:'700'}} onClick={()=>triggerClick()} />
-                    <Link to="/review"  style={{color:'initial', textDecoration:'none'}}><Tab label="REVIEW" style={{fontSize:'14px', fontWeight:'700'}} /></Link>
+                    <Tab onClick={()=>handleReview()} label="REVIEW" style={{fontSize:'14px', fontWeight:'700'}} />
                 </Tabs>
             </div>
             <span className='pull-right switch-label hideOnMobile' >

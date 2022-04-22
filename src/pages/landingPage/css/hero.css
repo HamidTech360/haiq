@@ -6,6 +6,7 @@
     background-repeat: no-repeat;
     background-position: center;
     padding-top: 50px;
+    min-width: 100%;
 }
 .logo{
     height: 225px;

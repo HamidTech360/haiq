@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Tab, Tabs, Switch } from '@material-ui/core';
-import {createStyles, makeStyles, Theme} from '@material-ui/core/styles'
+import {createStyles, makeStyles, Theme, createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles'
 
 //styles
 import './header.css'
@@ -36,6 +36,24 @@ const useStyles = makeStyles((theme)=>
     })
 )
 
+const theme = createMuiTheme({
+    overrides:{
+        MuiSwitch:{
+            track:{
+                "$checked:not($colorPrimary):not(colorSecondary) + &":{
+                    backgroundColor:'#22ED0B'
+                },
+                "$checked$colorPrimary + &":{
+                    backgroundColor:'green'
+                },
+                "$checked$colorSecondary + &":{
+                    backgroundColor:'green'
+                }
+            }
+        }
+    }
+})
+
 const Header2 = ({ SwitchMode, mode, activeTab}) => {
 
     const classes = useStyles()
@@ -53,13 +71,16 @@ const Header2 = ({ SwitchMode, mode, activeTab}) => {
             </Link>
             <span className='pull-right switch-label hideOnDesktop' >
                 {mode===false?'LIGHT MODE':'DARK MODE'} 
+                <MuiThemeProvider theme={theme}>
                 <Switch 
+                    color="default"
                     checked={mode}
                     onChange={()=>SwitchMode()}
                     classes={{
                         switchBase:classes.switchBase
                     }}
                 />
+                </MuiThemeProvider>
             </span>
             <div className="pull-right">
                 
@@ -72,6 +93,7 @@ const Header2 = ({ SwitchMode, mode, activeTab}) => {
             <span className='pull-right switch-label hideOnMobile' >
                 {mode===false?'LIGHT MODE':'DARK MODE'} 
                 <Switch 
+                    color="default"
                     checked={mode}
                     onChange={()=>SwitchMode()}
                     classes={{

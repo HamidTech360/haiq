@@ -1,8 +1,10 @@
 import React, {useState, useRef, useContext, useEffect} from 'react'
+import {useNavigate} from 'react-router-dom'
 import { syllable } from 'syllable'
 import UserContext from '../../context/userContext'
 import Modal from 'react-bootstrap/Modal'
 import axios from 'axios'
+import joi from 'joi-browser'
 import {unsplashApi} from '../../config/config.json'
 
 //components
@@ -12,12 +14,15 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 //styles
 import './css/create.css'
 
-const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection})=>{
+const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection, mode, SwitchMode})=>{
     const imgRef = useRef()
+    const formRef = useRef()
+    const navigate = useNavigate()
     const data = useContext(UserContext)
     const [openModal, setOpenModal] = useState(false);
     const [apiImages, setAPiImages] = useState([])
-    const [mode, setMode] = useState(true)
+    // const [mode, setMode] = useState(true)
+    const [lineErrorMsg, setLineErrorMsg] = useState({})
 
     useEffect(()=>{
         async function getImages (){
@@ -52,10 +57,9 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection}
         setOpenModal(true)
     }
 
-    const SwitchMode = ()=>{
-        setMode(!mode)
-        //console.log(mode);
-    }
+    // const SwitchMode = ()=>{
+    //     setMode(!mode)
+    // }
 
     const triggerClick = ()=>{
         imgRef.current.click()
@@ -66,17 +70,44 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection}
         const value = e.currentTarget.value
         const noOfSyllable = syllable(value)
         if(noOfSyllable >= allowedSyllable) e.currentTarget.readOnly= true
-
-        //console.log( noOfSyllable);
     }
 
     
     const allowEdit = (e)=>{
         const target = e.currentTarget
-        target.readOnly = false
+        target.readOnly = false      
+    }
 
-        // data[target.name]
+    const validate = ()=>{
+        const schema = {
+            line1:joi.string().required(),
+            line2:joi.string().required(),
+            line3:joi.string().required(),
+            image:joi.required(),
+            imageUrl:joi.string().required()
+        }
+        const {error} = joi.validate(data, schema, {abortEarly:false})
         
+        if(!error) return null
+
+        const errors = {}
+        for(let item of error.details){
+            errors[item.path[0]] = item.message
+        }
+       
+        return errors
+
+    }
+
+    const handleReview = ()=>{
+        const errors = validate()
+        if(!errors){
+            navigate('/review')
+        }
+        console.log(errors);
+        setLineErrorMsg(errors||{})
+        formRef.current.scrollIntoView()
+
     }
    
 
@@ -94,6 +125,7 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection}
                 triggerClick={triggerClick}
                 mode = {mode}
                 activeTab={0}
+                handleReview={handleReview}
             />
             <input 
                 onChange = {(e)=>handleImgSelection(e)}
@@ -111,9 +143,15 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection}
                             <img src={data.imageUrl} alt="upload" className='board-img' />
                         </>:''
                     }
+                         
+                    {lineErrorMsg.imageUrl?
+                        <div className="warning-text" style={{color:!mode?'#C79398':'#C79398'}}>
+                            {'Please select an image'}
+                        </div>:
+                    ''}
                 </div>
 
-                <div className="haiku-inputs-box text-center" >
+                <div className="haiku-inputs-box text-center" ref={formRef} >
                     <div className="haiku-form-group">
                         <input 
                             readOnly={false}
@@ -122,10 +160,13 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection}
                             onChange={(e)=>handleInputChange(e, 5)}
                             value={data.line1}
                             onClick={(e)=>allowEdit(e)}
-                            className="haiku-input"/>
-                            <div className="warning-text" style={{color:!mode?'black':'white'}}>
-                                Text can not be more than 5 syllables
-                            </div>
+                            className="haiku-input"
+                        />
+
+                            {lineErrorMsg.line1?
+                            <div className="warning-text" style={{color:!mode?'#C79398':'#C79398'}}>
+                               {lineErrorMsg.line1}
+                            </div>:''}
                     </div>
                     <div className="haiku-form-group">
                         <input 
@@ -134,10 +175,13 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection}
                             onChange={(e)=>handleInputChange(e, 7)}
                             onClick={(e)=>allowEdit(e)}
                             type="text" 
-                            className="haiku-input"/>
-                            <div className="warning-text" style={{color:!mode?'black':'white'}}>
-                                Text can not be more than 7 syllables
-                            </div>
+                            className="haiku-input"
+                        />
+
+                            {lineErrorMsg.line2?
+                            <div className="warning-text" style={{color:!mode?'#C79398':'#C79398'}}>
+                               {lineErrorMsg.line2}
+                            </div>:''}
                     </div>
                     <div className="haiku-form-group">
                         <input 
@@ -146,10 +190,13 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection}
                              onChange={(e)=>handleInputChange(e, 5)}
                              onClick={(e)=>allowEdit(e)}
                             type="text" 
-                            className="haiku-input"/>
-                              <div className="warning-text" style={{color:!mode?'black':'white'}}>
-                                Text can not be more than 5 syllables
-                            </div>
+                            className="haiku-input"
+                        />
+
+                            {lineErrorMsg.line3?
+                            <div className="warning-text" style={{color:!mode?'#C79398':'#C79398'}}>
+                               {lineErrorMsg.line3}
+                            </div>:''}
                     </div>
                 </div>
             </div>

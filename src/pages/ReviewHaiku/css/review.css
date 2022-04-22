@@ -80,6 +80,10 @@
 
 
 @media screen and (max-width:768px){
+    #preview-board{
+        margin-left:0px !important;
+        margin:auto !important;
+    }
     .review-btns{
         width: 100%;
         margin-left: 20px;
