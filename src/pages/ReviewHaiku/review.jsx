@@ -1,6 +1,9 @@
 import React, {useState, useContext, useRef, useEffect} from 'react'
+import {CircularProgress} from '@material-ui/core'
+import {apiUrl} from '../../config/config.json'
 import {useNavigate} from 'react-router-dom'
 import joi from 'joi-browser'
+import axios from 'axios'
 import _ from 'lodash'
 import { ToastContainer, toast } from 'react-toastify';
 import { Link } from 'react-router-dom'
@@ -12,12 +15,14 @@ import Header2 from '../../components/header/header2'
 import './css/review.css'
 import 'react-toastify/dist/ReactToastify.css';
 
-const ReviewHaiku = ({mode, SwitchMode})=>{
+const ReviewHaiku = ({mode, SwitchMode, setSavedHaik})=>{
  
     const modalInpt = useRef()
     const [openSaveModal, setOpenSaveModal] = useState(false);
     const [showError, setShowError] = useState(false)
-    const data = useContext(UserContext)
+    const [showProgress, setShowProgress] = useState(false)
+    const store = useContext(UserContext)
+    const data = store.formData
     const navigate = useNavigate()
 
     useEffect(()=>{
@@ -38,17 +43,35 @@ const ReviewHaiku = ({mode, SwitchMode})=>{
         });
     }
 
-    const review = ()=>{
+    const review =async ()=>{
         
         setOpenSaveModal(true)
     }
 
-    const publish = ()=>{
+    const publish = async ()=>{
+
         const userEmail = modalInpt.current.value
         console.log(userEmail);
         if(!userEmail) return setShowError(true)
+        setShowProgress(true)
+        console.log(data);
+        try{
+            const response = await axios.post(`${apiUrl}/haiku`, {...data, email:userEmail})
+            console.log(response.data);
+            if(response.data.status==="success"){
+                setSavedHaik(response.data.data)
+                navigate('/published')
+            }
+            setShowProgress(false)
+        }catch(ex){
+            console.log(ex.response?.data);
+            setShowProgress(false)
+            setShowError('An Error occured whilesaving the Haiq. Please try again later')
+        }
 
-        console.log('Connecting to the server...');
+
+        // console.log('Connecting to the server...');
+
     }
 
 
@@ -111,7 +134,7 @@ const ReviewHaiku = ({mode, SwitchMode})=>{
                         </div>:''}
 
                         </div>
-                        <button className="btn-continue-publish" onClick={()=>publish()} >Continue</button>
+                        <button className="btn-continue-publish" onClick={()=>publish()} >{showProgress?<CircularProgress size={25} />:'Continue'}</button>
                         <div className="text-center cancel-modal" onClick={()=>setOpenSaveModal(false)} >Cancel</div>
                     </div>
                 </div>

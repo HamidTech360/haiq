@@ -18,13 +18,15 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection,
     const imgRef = useRef()
     const formRef = useRef()
     const navigate = useNavigate()
-    const data = useContext(UserContext)
+    const store = useContext(UserContext)
+    const data = store.formData
     const [openModal, setOpenModal] = useState(false);
     const [apiImages, setAPiImages] = useState([])
     // const [mode, setMode] = useState(true)
     const [lineErrorMsg, setLineErrorMsg] = useState({})
 
     useEffect(()=>{
+        console.log(data)
         async function getImages (){
             try{
                 const response = await axios.get(`${unsplashApi}&count=20&page=2`)

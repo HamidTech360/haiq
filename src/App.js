@@ -15,11 +15,14 @@ import 'font-awesome/css/font-awesome.css'
 function App() {
   const [mode, setMode] = useState(false)
   const [data, setData] = useState({
-    line1:'',
-    line2:'',
-    line3:'',
-    image:'',
-    imageUrl:''
+    formData:{
+      line1:'',
+      line2:'',
+      line3:'',
+      image:'',
+      imageUrl:''
+    },
+    savedHaik:{}
   })
 
   const SwitchMode = ()=>{
@@ -28,9 +31,9 @@ function App() {
 
   const handleChange = (e)=>{
     const clone= {...data}
-    clone[e.currentTarget.name] = e.currentTarget.value
+    clone.formData[e.currentTarget.name] = e.currentTarget.value
     setData(clone)
-    //console.log(data);
+    console.log(data);
   }
 
   const handleImgSelection = (e)=>{
@@ -40,20 +43,25 @@ function App() {
 
     reader.onloadend= ()=>{
         const clone = {...data}
-        clone['image']= file
-        clone['imageUrl'] = reader.result
+        clone.formData['image']= file
+        clone.formData['imageUrl'] = reader.result
         setData(clone)
     }
     reader.readAsDataURL(file)
-    console.log(data);
+    console.log(data.formData);
   }
 
   const handleModalImgSelection = (item)=>{
     const clone = {...data}
-    clone['imageUrl'] = item.urls.raw
-    clone['image'] = 'none'
+    clone.formData['imageUrl'] = item.urls.raw
+    clone.formData['image'] = 'none'
     setData(clone)
     console.log(clone);
+  }
+  const setSavedHaik = (object)=>{
+    const clone = {...data}
+    clone.savedHaik = object
+    setData(clone)
   }
   return ( 
 
@@ -70,6 +78,7 @@ function App() {
               <Route path="/haiku" element={<Haiku/>}/>
               <Route path="/review" element={<ReviewHaiku 
                                                 mode={mode}
+                                                setSavedHaik={setSavedHaik}
                                                 SwitchMode={SwitchMode}/>}/>
               <Route path="/" element={<LandingPage/>}/>
             </Routes>

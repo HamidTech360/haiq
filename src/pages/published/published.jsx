@@ -1,4 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useContext, useRef} from 'react';
+import UserContext from '../../context/userContext';
+import {appBaseUrl} from '../../config/config.json'
 import { Fab } from '@material-ui/core';
 import {GrFacebookOption} from 'react-icons/gr'
 import {AiOutlineTwitter, AiOutlineMail} from 'react-icons/ai'
@@ -10,14 +12,25 @@ import Modal from 'react-bootstrap/Modal'
 import './css/published.css'
 
 const Published = () => {
+    const store = useContext(UserContext)
+    const savedHaik = store.savedHaik
+    const inptRef = useRef()
     const [memorializeModal, setMemorializeModal] = useState(false)
     const [authorship, setAuthorship] = useState(false)
+    const [copied, setCopied] = useState(false)
+    console.log(store.savedHaik);
 
     const AuthorshipDisplay = ()=>{
         setMemorializeModal(false)
         setAuthorship(true)
     }
-    
+
+    const Copy = ()=>{
+        navigator.clipboard.writeText(inptRef.current.value)
+        setCopied(true)
+        
+    }
+   
     return ( 
         <div className="published">
             <div className="published-pg-header">
@@ -28,8 +41,13 @@ const Published = () => {
                 <div className="share-work">Share your work</div>
 
                 <div className="publish-form-group">
-                    <input type="text" className="published-inpt" />
-                    <button className="btn-copy-link">Copy Link</button>
+                    <input 
+                        type="text" 
+                        className="published-inpt" 
+                        value={`${appBaseUrl}/haiku/${savedHaik._id}`} 
+                        ref={inptRef}
+                     />
+                    <button className="btn-copy-link" onClick={()=>Copy()}> {copied?'Text Copied!':'Copy Link'} </button>
                 </div>
 
                 <div className="social-links">
