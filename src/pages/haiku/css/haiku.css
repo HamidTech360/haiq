@@ -11,6 +11,7 @@
     padding-bottom: 14px;
     padding-right: 60px;
     padding-left: 80px;
+
 }
 .btn-share{
    background-color: #22ED0B;
@@ -39,4 +40,33 @@
 }
 .share{
     margin-left: 5px;
+}
+.haiku-modal{
+   
+    padding-top: 60px;
+    padding-bottom: 50px;
+    font-family: 'Didot', serif;
+}
+.return{
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 50px;
+    cursor: pointer;
+}
+.memorialize-modal-header {
+    font-family: 'Georgia', sans-serif;
+}
+
+@media screen and (max-width:768px){
+    .haiku-header{
+        padding-right: 30px;
+        padding-left: 20px;
+    }
+    .haiku-board{
+        margin-left: 13px;
+        margin-right: 13px;
+    }
+    .return{
+        font-size: 17px;
+    }
 }

@@ -1,0 +1,53 @@
+.notFoundBox{
+    padding-top: 50px;
+    max-width: 450px;
+    font-family: 'Georgia', sans-serif;
+    padding-bottom: 50px;
+    margin: auto;
+}
+#notfoundHeader{
+    background-color: #fff;
+}
+.notFound{
+    background-color:  #E5E5E5;
+}
+.status-code{
+    font-size: 170px;
+    font-weight: 700;
+}
+.status-label{
+    font-size: 45px;
+    font-weight: 700;
+    margin-top: 20px;
+}
+.not-found-text{
+    margin-top: 40px;
+    font-size: 20px;
+}
+.btn-not-found-create{
+    background-color: #ABABAB;
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 0px;
+    height: 40px;
+    margin-top: 30px;
+    font-family: 'Didot', serif;
+}
+
+@media screen and (max-width:768px) {
+    .status-code{
+        font-size: 120px;
+    }
+    .status-label{
+        font-size: 30px;
+        margin-top: 4px;
+    }
+    .notFoundBox{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .not-found-text{
+        font-size: 15px;
+    }
+}

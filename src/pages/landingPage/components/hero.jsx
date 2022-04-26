@@ -6,13 +6,13 @@ import '../css/hero.css'
 
 const Hero = () => {
 
-    const images = ['banner1.png', 'banner1b.png', 'banner1c.png']
+    const images = ['h1.jpg', 'h2.jpg', 'h3.jpg']
     const randomNo = Math.round(Math.random() *2)
     console.log(randomNo);
 
     return ( 
         <div className="banner">
-           <div className="banner-bg" style={{backgroundImage:`url(../../../../../assets/${images[0]})`}}>
+           <div className="banner-bg" style={{backgroundImage:`url(../../../../../assets/${images[randomNo]})`}}>
                 <div className="logo-box">
                     <img src="../../../assets/logo.png" className="logo" alt="haiku logo" />
                 </div>

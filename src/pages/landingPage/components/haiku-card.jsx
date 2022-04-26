@@ -18,10 +18,10 @@ const HaikuCard = () => {
 
             <div className="haik-card">
                 <div className="haiku-card-text">
-                    love between us is speech and breath. loving you is a long river running
+                  Two Stages in life: Before you get glassed & shortly thereafter
                 </div>
                 <div className="haiku-card-small-text">
-                    -Sonia Sanchez, “Haiku [for you]"
+                    -Warby Parker
                 </div>
             </div>
 

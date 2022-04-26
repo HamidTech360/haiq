@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom';
 import '../css/enrich.css'
 
 const Enrich = () => {
-    const images = ['banner4.png', 'banner4b.png', 'banner4c.png']
+    const images = ['e1.jpg', 'e2.jpg', 'e1.jpg']
     const randomNo = Math.round(Math.random() *2)
     console.log(randomNo);
     return ( 
         <div className="banner4">
-            <div className="banner4-box row" style={{backgroundImage:`url(./assets/${images[randomNo]})`}}>
+            <div className="banner4-box row" style={{backgroundImage:`url(./assets/${images[randomNo]})`, backgroundPosition:'center', backgroundSize:'cover'}}>
                 <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12"></div>
                 <div className="enrinch-box col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div className="enrich-header">Enrich the mind</div>

@@ -5,6 +5,8 @@ import CreateHaiku from './pages/createHaiku/create';
 import ReviewHaiku from './pages/ReviewHaiku/review';
 import Published from './pages/published/published';
 import Haiku from './pages/haiku/haiku';
+import Payment from './pages/payment/payment'
+import NotFound from './pages/notFound/notFound';
 
 import UserContext from './context/userContext';
 
@@ -80,6 +82,8 @@ function App() {
                                                 mode={mode}
                                                 setSavedHaik={setSavedHaik}
                                                 SwitchMode={SwitchMode}/>}/>
+              <Route path="/pay" element={<Payment/>}/>
+              <Route path="/notfound" element={<NotFound/>}/>
               <Route path="/" element={<LandingPage/>}/>
             </Routes>
           </BrowserRouter>

@@ -1,4 +1,10 @@
-import React, {useState, useContext, useRef} from 'react';
+import React, {useState, useContext, useRef, useEffect} from 'react';
+import axios from 'axios'
+import {apiUrl} from '../../config/config.json'
+// import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+// import { Elements, CardNumberElement, CardExpiryElement, CardCvcElement } from "@stripe/react-stripe-js";
+import StripeCheckout from 'react-stripe-checkout'
+// import { loadStripe } from "@stripe/stripe-js";
 import UserContext from '../../context/userContext';
 import {appBaseUrl} from '../../config/config.json'
 import { Fab } from '@material-ui/core';
@@ -12,19 +18,96 @@ import Modal from 'react-bootstrap/Modal'
 import './css/published.css'
 
 const Published = () => {
+    // const [stripeTestPromise, setStripeTestPromise]  = useState(()=>
+    //     loadStripe('pk_test_51Kqg3REu5Qc79aW8jrKgq0qyQYwX5wvEAoxxS3Evq4ZrxesK9UPhHThsEaUjLCY9HRyIZOjmG21m3L65xBI4xhEq00r53djqjM')
+    // ) 
+    // useEffect(()=>{
+
+    // },[])
     const store = useContext(UserContext)
     const savedHaik = store.savedHaik
     const inptRef = useRef()
     const [memorializeModal, setMemorializeModal] = useState(false)
     const [authorship, setAuthorship] = useState(false)
     const [copied, setCopied] = useState(false)
-    console.log(store.savedHaik);
+    const [timer, setTimer]= useState({
+        days:'',
+        hours:'',
+        minutes:'',
+        seconds:''
+    })
+    //console.log(store.savedHaik);
+
+    
+
+    //Countdown timer calculator
+        // let future = new Date()
+        // future.setDate(future.getDate() + 1)
+        // let countdownDate = new Date(future).getTime()
+       // console.log('future is', future, 'while countdown is ', countdownDate);
+
+       
+        // let x = setInterval(function(){
+        //     let now = new Date().getTime()
+        //     let distance = countdownDate-now
+    
+        //     let days = Math.floor(distance/(1000*60*60*24))
+        //     let hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60))
+        //     let minutes = Math.floor((distance%(1000*60*60))/(1000*60)) 
+        //     let seconds =  Math.floor((distance%(1000*60))/1000)
+
+        //     const clone = {...timer}
+        //     clone['days'] = days
+        //     clone['hours'] = hours
+        //     clone['minutes'] = minutes
+        //     clone['seconds'] = seconds
+        //     setTimer(clone)
+    
+            // console.log(days, hours, minutes, seconds);
+            // if(distance < 0){
+            //     clearInterval(x)
+            //     alert('Item expired')
+            // }
+        // }, 1000)
+        //------------------------------
+
+
+    //http://localhost:3000/haiku/62631517df1498326647107a
+
+    const renderStripe = ()=>{
+        
+        try{
+            return(
+                <div>
+                <StripeCheckout
+                    label='memorialize'
+                    className='btn-IWTMMH'
+                    id="btn-pay"
+                    token={handleToken}
+                    stripeKey='pk_test_51Kqg3REu5Qc79aW8jrKgq0qyQYwX5wvEAoxxS3Evq4ZrxesK9UPhHThsEaUjLCY9HRyIZOjmG21m3L65xBI4xhEq00r53djqjM'
+                    amount={10000}
+                    name='haik'
+                    ComponentClass='div'
+                    billingAddress
+                    shippingAddress
+                />
+                </div>
+            )
+        }catch(ex){
+            return(
+                <h1>Hello</h1>
+            )
+        }
+    }
 
     const AuthorshipDisplay = ()=>{
         setMemorializeModal(false)
         setAuthorship(true)
     }
-
+    const handleToken = async (token, address)=>{
+        const response = await axios.post(`${apiUrl}/haiku/pay`, {token})
+        console.log(response.data);
+    } 
     const Copy = ()=>{
         navigator.clipboard.writeText(inptRef.current.value)
         setCopied(true)
@@ -80,23 +163,19 @@ const Published = () => {
 
                 <div className="days-box text-center">
                     <div className="time">
-                        <div>16</div>
-                        <div>DAYS</div>
+                        <div>{'timer.days'}</div> <div>DAYS</div>
                     </div>
 
                     <div className="time">
-                        <div>20</div>
-                        <div>HOURS</div>
+                        <div>{'timer.hours'}</div><div>HOURS</div>
                     </div>
 
                     <div className="time">
-                        <div>26</div>
-                        <div>MINUTES</div>
+                        <div>{'timer.minutes'}</div><div>MINUTES</div>
                     </div>
 
                     <div className="time">
-                        <div>10</div>
-                        <div>SECONDS</div>
+                        <div>{'timer.seconds'}</div><div>SECONDS</div>
                     </div>
                 </div>
 
@@ -123,6 +202,7 @@ const Published = () => {
                     </div>
 
                     <div className="memorialize-modal-btns">
+                        {StripeCheckout? renderStripe():''}
                         <button className="btn-IWTMMH" onClick={()=>AuthorshipDisplay()} >I want to memorialize my Haiq</button>
                         <button className="btn-memorialize-cancel" onClick={()=>setMemorializeModal(false)}>Cancel</button>
                     </div>
@@ -134,6 +214,7 @@ const Published = () => {
                     <div className="pull-righ skip">
                         <span className="pull-right" onClick={()=>setAuthorship(false)}>Skip</span>
                     </div>
+                    
                     <div className="memorialize-modal-header text-center">Authorship</div>
                     <div className="memorialize-modal-text text-center">
                         Sign your masterpiece in 17 characters. 
@@ -158,6 +239,28 @@ const Published = () => {
                     </div> */}
                 </div>
             </Modal>
+
+            
+
+            
+                {/* <Modal show={true}>
+                    <div className='payment-modal'>
+                    <Elements stripe={stripeTestPromise}>
+                      <CardElement 
+                            options={{
+                                style:{
+                                    base:{
+                                        height:'100px',
+                                        backgroundColor:'red',
+                                        width:'100%'
+                                    }
+                                }
+                            }}
+                       />
+                       </Elements>
+                    </div>
+                </Modal> */}
+            
         </div>
      );
 }

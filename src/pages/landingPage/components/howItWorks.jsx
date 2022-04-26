@@ -13,7 +13,7 @@ const HowItWorks = () => {
             </div>
 
            <div className='HIW-container'>
-                <div className="broken-line"></div>
+                {/* <div className="broken-line"></div> */}
 
                 <div className="how-it-works">
                     <div className="HIW-item">
@@ -69,7 +69,7 @@ const HowItWorks = () => {
                 </div>
            </div>
 
-            <div className="banner3-slant-text">"What's your Haiq? Publish yourself and share it with the universe."</div>
+            <div className="banner3-slant-text">What's your Haiq? Publish yourself and share it with the universe.</div>
             
         </div>
      );
