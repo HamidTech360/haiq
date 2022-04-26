@@ -35,7 +35,7 @@ function App() {
     const clone= {...data}
     clone.formData[e.currentTarget.name] = e.currentTarget.value
     setData(clone)
-    console.log(data);
+    //console.log(data);
   }
 
   const handleImgSelection = (e)=>{
@@ -77,7 +77,7 @@ function App() {
                                                 handleChange={handleChange} 
                                                 handleImgSelection={handleImgSelection} />}/>
               <Route path="/published" element={<Published/>}/>
-              <Route path="/haiku" element={<Haiku/>}/>
+              <Route path="/haiku/:id" element={<Haiku/>}/>
               <Route path="/review" element={<ReviewHaiku 
                                                 mode={mode}
                                                 setSavedHaik={setSavedHaik}

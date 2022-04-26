@@ -1,6 +1,7 @@
 import React, {useState, useContext, useRef, useEffect} from 'react';
 import axios from 'axios'
 import {apiUrl} from '../../config/config.json'
+import { getRemainingTime } from '../../utils/countdownTimer';
 // import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 // import { Elements, CardNumberElement, CardExpiryElement, CardCvcElement } from "@stripe/react-stripe-js";
 import StripeCheckout from 'react-stripe-checkout'
@@ -18,12 +19,7 @@ import Modal from 'react-bootstrap/Modal'
 import './css/published.css'
 
 const Published = () => {
-    // const [stripeTestPromise, setStripeTestPromise]  = useState(()=>
-    //     loadStripe('pk_test_51Kqg3REu5Qc79aW8jrKgq0qyQYwX5wvEAoxxS3Evq4ZrxesK9UPhHThsEaUjLCY9HRyIZOjmG21m3L65xBI4xhEq00r53djqjM')
-    // ) 
-    // useEffect(()=>{
 
-    // },[])
     const store = useContext(UserContext)
     const savedHaik = store.savedHaik
     const inptRef = useRef()
@@ -31,10 +27,10 @@ const Published = () => {
     const [authorship, setAuthorship] = useState(false)
     const [copied, setCopied] = useState(false)
     const [timer, setTimer]= useState({
-        days:'',
-        hours:'',
-        minutes:'',
-        seconds:''
+        days:'00',
+        hours:'00',
+        minutes:'00',
+        seconds:'00'
     })
     //console.log(store.savedHaik);
 
@@ -73,6 +69,16 @@ const Published = () => {
 
 
     //http://localhost:3000/haiku/62631517df1498326647107a
+    useEffect(()=>{
+        const intervalId = setInterval(()=>{
+            updateTimer()
+        }, 1000)
+         function clearItv (){
+             clearInterval(intervalId)
+         }
+
+       
+    }, [])
 
     const renderStripe = ()=>{
         
@@ -100,6 +106,12 @@ const Published = () => {
         }
     }
 
+    const updateTimer = (countDown)=>{
+        setTimer(getRemainingTime('2022-04-26T11:10:35.192+00:00'))
+    }
+
+    
+
     const AuthorshipDisplay = ()=>{
         setMemorializeModal(false)
         setAuthorship(true)
@@ -116,6 +128,9 @@ const Published = () => {
    
     return ( 
         <div className="published">
+            <div className="hideOnDesktop hideOnMobile">
+                
+            </div>
             <div className="published-pg-header">
                 <img src="../../assets/logo.png" alt="logo" className="header-logo" />
             </div>
@@ -163,19 +178,19 @@ const Published = () => {
 
                 <div className="days-box text-center">
                     <div className="time">
-                        <div>{'timer.days'}</div> <div>DAYS</div>
+                        <div>{timer.days}</div> <div>DAYS</div>
                     </div>
 
                     <div className="time">
-                        <div>{'timer.hours'}</div><div>HOURS</div>
+                        <div>{timer.hours}</div><div>HOURS</div>
                     </div>
 
                     <div className="time">
-                        <div>{'timer.minutes'}</div><div>MINUTES</div>
+                        <div>{timer.minutes}</div><div>MINUTES</div>
                     </div>
 
                     <div className="time">
-                        <div>{'timer.seconds'}</div><div>SECONDS</div>
+                        <div>{timer.seconds}</div><div>SECONDS</div>
                     </div>
                 </div>
 
@@ -202,7 +217,7 @@ const Published = () => {
                     </div>
 
                     <div className="memorialize-modal-btns">
-                        {StripeCheckout? renderStripe():''}
+                        {/* {StripeCheckout? renderStripe():''} */}
                         <button className="btn-IWTMMH" onClick={()=>AuthorshipDisplay()} >I want to memorialize my Haiq</button>
                         <button className="btn-memorialize-cancel" onClick={()=>setMemorializeModal(false)}>Cancel</button>
                     </div>

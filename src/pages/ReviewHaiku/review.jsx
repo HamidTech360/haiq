@@ -20,6 +20,7 @@ const ReviewHaiku = ({mode, SwitchMode, setSavedHaik})=>{
     const modalInpt = useRef()
     const [openSaveModal, setOpenSaveModal] = useState(false);
     const [showError, setShowError] = useState(false)
+    const [showApiError, setShowApiError] = useState(false)
     const [showProgress, setShowProgress] = useState(false)
     const store = useContext(UserContext)
     const data = store.formData
@@ -66,7 +67,7 @@ const ReviewHaiku = ({mode, SwitchMode, setSavedHaik})=>{
         }catch(ex){
             console.log(ex.response?.data);
             setShowProgress(false)
-            setShowError('An Error occured whilesaving the Haiq. Please try again later')
+            setShowApiError(true)
         }
 
 
@@ -131,6 +132,10 @@ const ReviewHaiku = ({mode, SwitchMode, setSavedHaik})=>{
 
                         {showError?<div className="warning-text" style={{color:!mode?'#C79398':'#C79398'}}>
                             {'EMAIL is not allowed to be empty'}
+                        </div>:''}
+
+                        {showApiError?<div className="alert alert-danger text-center" style={{color:!mode?'#C79398':'#C79398'}}>
+                            {'OOps!! Error occured while saving your Haik. Please try again'}
                         </div>:''}
 
                         </div>

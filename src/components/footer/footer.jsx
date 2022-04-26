@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 import './footer.css'
 
 const Footer = () => {
+    const redirect = ()=>{
+        window.location = 'mailto:help@modernhaiq.com'
+    }
     return ( 
         <div className="footer">
            <div className="footer-flex row">
@@ -16,7 +19,7 @@ const Footer = () => {
                     <span className="footer-text-item ">
                         <img src="../../assets/elipse.png" alt="elipse" /> 
                      </span>
-                    <span className="footer-text-item">Contact Us</span>
+                    <span className="footer-text-item" onClick={()=>redirect()}>Contact us</span>
                     <span className="pull-right copy-right hideOnMobile">&copy;2022 Modern Haiq</span>
                 </div>
 

@@ -59,9 +59,6 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection,
         setOpenModal(true)
     }
 
-    // const SwitchMode = ()=>{
-    //     setMode(!mode)
-    // }
 
     const triggerClick = ()=>{
         imgRef.current.click()

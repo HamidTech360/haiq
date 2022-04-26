@@ -6,7 +6,7 @@ import '../css/hero.css'
 
 const Hero = () => {
 
-    const images = ['h1.jpg', 'h2.jpg', 'h3.jpg']
+    const images = ['h2.jpg', 'h1.jpg', 'h3.jpg']
     const randomNo = Math.round(Math.random() *2)
     console.log(randomNo);
 

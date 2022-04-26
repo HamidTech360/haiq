@@ -1,4 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
+import { useNavigate } from 'react-router-dom';
+import {apiUrl, appBaseUrl} from '../../config/config.json'
+import axios from 'axios'
+import { useParams} from 'react-router-dom'
 import Modal from 'react-bootstrap/Modal'
 import {BsShareFill} from 'react-icons/bs'
 import { Fab } from '@material-ui/core';
@@ -9,24 +13,51 @@ import {RiErrorWarningLine} from 'react-icons/ri'
 
 import './css/haiku.css'
 
-const Haiku = () => {
-    const [showModal, setShowModal] = useState(false)
+const Haiku = (props) => {
+   const inptRef = useRef()
+   const {id:haikuId} = useParams()
+   const navigate = useNavigate()
+   const [data, setData] = useState({})
+   const [showModal, setShowModal] = useState(false)
+   const [copied, setCopied] = useState(false)
+    useEffect(()=>{
+       
+        async function getHaiku (){
+            try{
+                const response = await axios.get(`${apiUrl}/haiku/${haikuId}`)
+                console.log(response.data.data);
+                setData(response.data.data)
+            }catch(err){
+                console.log(err.response?.data); 
+                 navigate('/notfound')
+            }
+        }
+        getHaiku()
+        
+    }, [])
+
+    const Copy = ()=>{
+        navigator.clipboard.writeText(inptRef.current.value)
+        setCopied(true)
+        
+    }
+    
     return ( 
         <div className="haiku">
             <div className="haiku-header">
                 <img src="../../assets/logo.png" alt="logo" className='header-logo' />
-                <button className="pull-right btn-share">
-                    <BsShareFill/> <span className="share" onClick={()=>setShowModal(true)}>SHARE</span>
+                <button className="pull-right btn-share" onClick={()=>setShowModal(true)}>
+                    <BsShareFill/> <span className="share" >SHARE</span>
                 </button>
             </div>
 
             <div className="haiku-board">
-                <img src="../../assets/banner1.png" alt="haiku" className="haiku-image" />
+                <img src={data.image} alt="haiku" className="haiku-image" />
                 <div className="haiku-text text-center">
-                    <div className="line1-haiku">Over the wintry Forest, </div>
-                    <div className="line2-haiku">wind howl in rage with no</div>
-                    <div className="line3-haiku">leaves to blow</div>
-                    <div className="pull-right"> . Author</div>
+                    <div className="line1-haiku">{data.line1} </div>
+                    <div className="line2-haiku">{data.line2}</div>
+                    <div className="line3-haiku">{data.line3}</div>
+                    <div className="pull-right"> . {data.Author==='unknown'?'unknown':data.Author}</div>
                 </div>
             </div>
 
@@ -37,10 +68,10 @@ const Haiku = () => {
                         <input 
                             type="text" 
                             className="published-inpt" 
-                            // value={`${appBaseUrl}/haiku/${savedHaik._id}`} 
-                            // ref={inptRef}
+                            value={`${appBaseUrl}/haiku/${data._id}`} 
+                            ref={inptRef}
                         />
-                        <button className="btn-copy-link"> Copy </button>
+                        <button className="btn-copy-link" onClick={()=>Copy()}> {copied?'Text Copied!':'Copy Link'} </button>
                     </div>
 
                     <div className="social-links text-center">
