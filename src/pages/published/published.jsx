@@ -145,7 +145,7 @@ const Published = () => {
                         value={`${appBaseUrl}/haiku/${savedHaik._id}`} 
                         ref={inptRef}
                      />
-                    <button className="btn-copy-link" onClick={()=>Copy()}> {copied?'Text Copied!':'Copy Link'} </button>
+                    <button className="btn-copy-link" onClick={()=>Copy()}> {copied?'Copied!':'Copy'} </button>
                 </div>
 
                 <div className="social-links">

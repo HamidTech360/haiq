@@ -135,7 +135,7 @@ const ReviewHaiku = ({mode, SwitchMode, setSavedHaik})=>{
                         </div>:''}
 
                         {showApiError?<div className="alert alert-danger text-center" style={{color:!mode?'#C79398':'#C79398'}}>
-                            {'OOps!! Error occured while saving your Haik. Please try again'}
+                            {'OOps!! Error occured while saving your Haik. Make sure the size if your image is not too large '}
                         </div>:''}
 
                         </div>
