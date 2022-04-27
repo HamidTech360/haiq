@@ -9,7 +9,7 @@ const HaikuCard = () => {
         <div className="haiku-cards text-center">
             <div className="haik-card">
                 <div className="haiku-card-text">
-                     Over the wintry Forest, wind howl in rage with no leaves to blow
+                     Over the wintry Forest, <br /> wind howl in rage with no <br /> leaves to blow
                 </div>
                 <div className="haiku-card-small-text">
                     -Nastune Soseki, “Over the Wintry”
@@ -18,7 +18,7 @@ const HaikuCard = () => {
 
             <div className="haik-card">
                 <div className="haiku-card-text">
-                  Two Stages in life: Before you get glassed & shortly thereafter
+                  Two Stages in life: <br /> Before you get glassed <br /> & shortly thereafter
                 </div>
                 <div className="haiku-card-small-text">
                     -Warby Parker
@@ -27,7 +27,7 @@ const HaikuCard = () => {
 
             <div className="haik-card">
                 <div className="haiku-card-text">
-                    A world of dew, And within every dewdrop A world of struggle
+                    A world of dew, And <br /> within every dewdrop <br /> A world of struggle
                 </div>
                 <div className="haiku-card-small-text">
                     -Kobayashi Issa, “A World of Dew”

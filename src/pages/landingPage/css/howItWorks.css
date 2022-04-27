@@ -20,11 +20,18 @@
     
     display: flex;
     flex-direction: row;
-    padding-right: 60px;
-    padding-left: 100px;
+    /* padding-right: 60px; */
+    /* padding-left: 60px; */
     padding-top: 60px;
-    
-}
+    width: fit-content;
+    margin:auto;
+}  
+/* .HIW-box{
+    margin: auto;
+    width: fit-content;
+    padding-left: 20px;
+    padding-right: 20px;
+} */
 .fab{
     border-radius: 50%;
     height: fit-content;
@@ -45,7 +52,7 @@
 }
 .HIW-item{
     width: 170px;
-    margin-right: 40px;
+    margin-right: 20px;
 }
 .banner3-divider{
     border: 0px;
@@ -76,11 +83,7 @@
     font-family: 'Didot', sans-serif;
 }
 
-@media screen and (max-width:1115px) and (min-width:769px){
-    .broken-line{
-        margin-right: 200px;
-    }
-}
+
 @media screen and (max-width:960px) and (min-width:769px){
    .fab{
        padding: 20px;
@@ -94,24 +97,12 @@
         height: 37px;
         width: 37px;
     }
- }
- @media screen and (max-width:768px) and (min-width:520px){
-    .broken-line{
-        margin-right: 150px;
+    .HIW-item{
+        margin-right: 10px;
     }
  }
 
- @media screen and (max-width:519px) and (min-width:402px) {
-     .broken-line{
-         margin-right: 50px;
-     }
- }
 
-@media screen and (max-width:400px) {
-    .broken-line{
-        margin-right: 50px;
-    }
-}
 
 @media screen and (max-width:768px) {
     .broken-line{
@@ -131,6 +122,7 @@
    }
    .how-it-works{
        padding-left: 10px;
+       width: initial;
    }
    .HIW-item{
        margin-right: 20px;

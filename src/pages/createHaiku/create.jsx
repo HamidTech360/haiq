@@ -164,7 +164,7 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection,
 
                             {lineErrorMsg.line1?
                             <div className="warning-text" style={{color:!mode?'#C79398':'#C79398'}}>
-                               {lineErrorMsg.line1}
+                               {'Please enter the first line of your haiku'}
                             </div>:''}
                     </div>
                     <div className="haiku-form-group">
@@ -179,7 +179,7 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection,
 
                             {lineErrorMsg.line2?
                             <div className="warning-text" style={{color:!mode?'#C79398':'#C79398'}}>
-                               {lineErrorMsg.line2}
+                               {'Please enter the second line of your haiku'}
                             </div>:''}
                     </div>
                     <div className="haiku-form-group">
@@ -194,7 +194,7 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection,
 
                             {lineErrorMsg.line3?
                             <div className="warning-text" style={{color:!mode?'#C79398':'#C79398'}}>
-                               {lineErrorMsg.line3}
+                               {'Please enter the third line of your haiku'}
                             </div>:''}
                     </div>
                 </div>

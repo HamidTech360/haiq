@@ -131,7 +131,7 @@ const ReviewHaiku = ({mode, SwitchMode, setSavedHaik})=>{
                             />
 
                         {showError?<div className="warning-text" style={{color:!mode?'#C79398':'#C79398'}}>
-                            {'EMAIL is not allowed to be empty'}
+                            {'You must enter your email to continue'}
                         </div>:''}
 
                         {showApiError?<div className="alert alert-danger text-center" style={{color:!mode?'#C79398':'#C79398'}}>

@@ -3,6 +3,9 @@
     min-height: 600px;
     padding-bottom: 40px;
 }
+.preview-haiku{
+    overflow: hidden;
+}
 .review-texts{
     font-family: 'Antic Didone', serif;
     font-weight: 700;

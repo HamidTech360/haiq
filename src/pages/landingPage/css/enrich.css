@@ -1,5 +1,6 @@
 .banner4{
     padding: 80px;
+    padding-bottom: 0px;
     font-family: 'Didot', serif;
 }
 .banner4-box{
@@ -50,6 +51,7 @@
     text-align: center;
     color: #BE8E9A;
     padding-top: 40px;
+    padding-bottom: 40px;
 }
 
 @media screen and (max-width:768px) {
