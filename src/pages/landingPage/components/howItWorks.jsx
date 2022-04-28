@@ -17,8 +17,8 @@ const HowItWorks = () => {
 
                 <div className="HIW-box">
                     <div className="how-it-works">
-                        <div className="HIW-item">
-                            <div className="fab">
+                        <div className="HIW-item text-center">
+                            <div className="fab text-center">
                                 <img src="../../../assets/Vector.png" alt="vector" className="HIW-vector" />
                             </div>
 

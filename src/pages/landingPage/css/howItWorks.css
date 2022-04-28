@@ -38,6 +38,7 @@
     width: fit-content;
     background-color: white;
     padding: 40px;
+    margin: auto;
 }
 .HIW-vector{
     height: 50px;
@@ -53,6 +54,7 @@
 .HIW-item{
     width: 170px;
     margin-right: 20px;
+    /* border: 1px solid red; */
 }
 .banner3-divider{
     border: 0px;
@@ -84,23 +86,42 @@
 }
 
 
-@media screen and (max-width:960px) and (min-width:769px){
+@media screen and (max-width:1004px) and (min-width:769px){
    .fab{
        padding: 20px;
    }
-   .broken-line{
-       top: 100px;
+   .HIW-vector{
+       height: 30px;
+       width: 30px;
    }
+   .HIW-text{
+       font-size: 15px;
+   }
+   .HIW-item{
+       margin-right: 3px;
+       
+   }
+   .fab{
+       margin: auto;
+   }
+  
 }
-@media screen and (max-width:845px) and (min-width:769px){
+@media screen and (max-width:880px) {
     .HIW-vector{
-        height: 37px;
-        width: 37px;
+        height: 20px;
+        width: 20px;
     }
+    .fab{}
     .HIW-item{
-        margin-right: 10px;
+        margin-right: 0px;
+        max-width: 150px !important;
+    }
+    .HIW-text{
+        font-size: 13px;
     }
  }
+
+
 
 
 
@@ -114,8 +135,8 @@
         font-size: 37px;
     }
    .HIW-vector{
-       height: 14px;
-       width: 14px;
+       height: 20px;
+       width: 20px;
    }
    .fab{
        padding: 10px;
@@ -125,7 +146,7 @@
        width: initial;
    }
    .HIW-item{
-       margin-right: 20px;
+       margin-right: 10px;
    }
    .HIW-text{
        font-size: 12px;
@@ -138,3 +159,9 @@
        line-height: 30px;
    }
 } 
+
+@media screen and (max-width:350px) {
+    .HIW-item{
+        margin-right: 5px;
+    }
+}
