@@ -86,6 +86,10 @@
     font-family: 'Antic Didone', serif;
     font-weight: 700;
 }
+.fish{
+    color: #c22635;
+}
+
 
 
 @media screen and (max-width:768px){

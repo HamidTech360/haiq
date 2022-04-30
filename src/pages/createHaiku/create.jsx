@@ -22,8 +22,23 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection,
     const data = store.formData
     const [openModal, setOpenModal] = useState(false);
     const [apiImages, setAPiImages] = useState([])
-    // const [mode, setMode] = useState(true)
     const [lineErrorMsg, setLineErrorMsg] = useState({})
+    const [syllableErrMsg, setSyllableErrMsg] = useState({})
+     const [syllableCount, setSyllableCount] = useState({
+        line1:{
+            currentValue:0,
+            maxValue:5
+        },
+        line2:{
+            currentValue:0,
+            maxValue:7
+        },
+        line3:{
+            currentValue:0,
+            maxValue:5
+        }
+     })
+    
 
     useEffect(()=>{
         console.log(data)
@@ -66,9 +81,21 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection,
 
     const handleInputChange = (e, allowedSyllable)=>{
         handleChange(e)
+        const errors = {}
         const value = e.currentTarget.value
         const noOfSyllable = syllable(value)
-        if(noOfSyllable >= allowedSyllable) e.currentTarget.readOnly= true
+        const cloneSyllableCount = {...syllableCount}
+        cloneSyllableCount[e.currentTarget.name].currentValue = noOfSyllable
+        setSyllableCount(cloneSyllableCount)
+
+        if(noOfSyllable > allowedSyllable){
+            errors[e.currentTarget.name] = 'Exceeded the required syllable'
+         }else{
+             errors[e.currentTarget.name] = null
+         }
+         setSyllableErrMsg({...syllableErrMsg, ...errors})
+         //console.log(syllableErrMsg);
+       
     }
 
     
@@ -100,13 +127,18 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection,
 
     const handleReview = ()=>{
         const errors = validate()
-        if(!errors){
-            navigate('/review')
+        if(errors){
+            console.log(errors);
+            setLineErrorMsg(errors||{})
+            return formRef.current.scrollIntoView() 
         }
-        console.log(errors);
-        setLineErrorMsg(errors||{})
-        formRef.current.scrollIntoView()
-
+        if(syllableErrMsg.line1!==null || syllableErrMsg.line2!==null || syllableErrMsg.line3 !== null) {
+            
+            return formRef.current.scrollIntoView()
+           
+        }
+        
+        navigate('/review')
     }
    
 
@@ -143,32 +175,51 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection,
                         </>:''
                     }
                          
-                    {lineErrorMsg.imageUrl?
-                        <div className="warning-text" style={{color:!mode?'#C79398':'#C79398'}}>
+                  
+                </div>
+                {lineErrorMsg.imageUrl?
+                        <div className="warning-text text-center" style={{color:!mode?'#c22635':'#c22635'}}>
                             {'Please select an image'}
                         </div>:
                     ''}
-                </div>
 
                 <div className="haiku-inputs-box text-center" ref={formRef} >
                     <div className="haiku-form-group">
                         <input 
-                            readOnly={false}
+
+                            style={{
+                                border:syllableErrMsg.line1? '1px solid #c22635':''
+                            }}
                             type="text"
                             name="line1" 
                             onChange={(e)=>handleInputChange(e, 5)}
                             value={data.line1}
                             onClick={(e)=>allowEdit(e)}
                             className="haiku-input"
+                            id="haiku-input"
                         />
 
+                            <div className="noOfSyllable" style={{color:!mode?'black':'white'}}>
+                                 {syllableCount.line1.currentValue}  
+                            </div>
+
                             {lineErrorMsg.line1?
-                            <div className="warning-text" style={{color:!mode?'#C79398':'#C79398'}}>
+                            <div className="warning-text" style={{color:!mode?'#c22635':'#c22635'}}>
                                {'Please enter the first line of your haiku'}
                             </div>:''}
+
+                            {syllableErrMsg.line1?
+                            <div className="warning-text" style={{color:!mode?'#c22635':'#c22635'}}>
+                               {'Please reiew the number of syllables'}
+                            </div>:''}
                     </div>
+
+
                     <div className="haiku-form-group">
-                        <input 
+                        <input
+                             style={{
+                                border:syllableErrMsg.line2? '1px solid #c22635':''
+                            }} 
                             name="line2" 
                             value={data.line2}
                             onChange={(e)=>handleInputChange(e, 7)}
@@ -177,13 +228,27 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection,
                             className="haiku-input"
                         />
 
+                            <div className="noOfSyllable" style={{color:!mode?'black':'white'}}>
+                                 {syllableCount.line2.currentValue}  
+                            </div>
+
                             {lineErrorMsg.line2?
-                            <div className="warning-text" style={{color:!mode?'#C79398':'#C79398'}}>
+                            <div className="warning-text" style={{color:!mode?'#c22635':'#c22635'}}>
                                {'Please enter the second line of your haiku'}
                             </div>:''}
+
+                            {syllableErrMsg.line2?
+                            <div className="warning-text" style={{color:!mode?'#c22635':'#c22635'}}>
+                               {'Please reiew the number of syllables'}
+                            </div>:''}
                     </div>
+
+
                     <div className="haiku-form-group">
                         <input 
+                            style={{
+                                border:syllableErrMsg.line3? '1px solid #c22635':''
+                            }}
                              name="line3" 
                              value={data.line3}
                              onChange={(e)=>handleInputChange(e, 5)}
@@ -191,10 +256,17 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection,
                             type="text" 
                             className="haiku-input"
                         />
-
+                            <div className="noOfSyllable" style={{color:!mode?'black':'white'}}>
+                                 {syllableCount.line3.currentValue}  
+                            </div>
                             {lineErrorMsg.line3?
-                            <div className="warning-text" style={{color:!mode?'#C79398':'#C79398'}}>
+                            <div className="warning-text" style={{color:!mode?'#c22635':'#c22635'}}>
                                {'Please enter the third line of your haiku'}
+                            </div>:''}
+
+                            {syllableErrMsg.line3?
+                            <div className="warning-text" style={{color:!mode?'#c22635':'#c22635'}}>
+                               {'Please reiew the number of syllables'}
                             </div>:''}
                     </div>
                 </div>

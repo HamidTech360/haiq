@@ -1,4 +1,5 @@
 import React, {useState, useContext, useRef, useEffect} from 'react';
+import {Link, useNavigate} from 'react-router-dom'
 import axios from 'axios'
 import {apiUrl} from '../../config/config.json'
 import { getRemainingTime } from '../../utils/countdownTimer';
@@ -22,6 +23,7 @@ const Published = () => {
 
     const store = useContext(UserContext)
     const savedHaik = store.savedHaik
+    const navigate = useNavigate()
     const inptRef = useRef()
     const [memorializeModal, setMemorializeModal] = useState(false)
     const [authorship, setAuthorship] = useState(false)
@@ -73,12 +75,10 @@ const Published = () => {
         const intervalId = setInterval(()=>{
             updateTimer()
         }, 1000)
-         function clearItv (){
-             clearInterval(intervalId)
-         }
+        return clearInterval(intervalId)
 
        
-    }, [])
+    }, [timer])
 
     const renderStripe = ()=>{
         
@@ -107,7 +107,7 @@ const Published = () => {
     }
 
     const updateTimer = (countDown)=>{
-        setTimer(getRemainingTime('2022-04-26T11:10:35.192+00:00'))
+        setTimer(getRemainingTime('2022-04-26T11:11:35.192+00:00'))
     }
 
     
@@ -178,25 +178,25 @@ const Published = () => {
 
                 <div className="days-box text-center">
                     <div className="time">
-                        <div>{timer.days}</div> <div>DAYS</div>
+                        <div>{'00'}</div> <div>DAYS</div>
                     </div>
 
                     <div className="time">
-                        <div>{timer.hours}</div><div>HOURS</div>
+                        <div>{'00'}</div><div>HOURS</div>
                     </div>
 
                     <div className="time">
-                        <div>{timer.minutes}</div><div>MINUTES</div>
+                        <div>{'00'}</div><div>MINUTES</div>
                     </div>
 
                     <div className="time">
-                        <div>{timer.seconds}</div><div>SECONDS</div>
+                        <div>{'00'}</div><div>SECONDS</div>
                     </div>
                 </div>
 
                 <div className="published-btns">
                     <button className="btn-memorialize" onClick={()=>setMemorializeModal(true)} >Memorialize Forever <RiErrorWarningLine/> </button>
-                    <button className="btn-view-work">View Your Work</button>
+                    <button className="btn-view-work" onClick={()=>navigate(`/haiku/${savedHaik._id}`)}>View Your Work</button>
                 </div>
 
             </div> 

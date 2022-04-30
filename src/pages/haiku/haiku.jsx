@@ -57,7 +57,7 @@ const Haiku = (props) => {
                     <div className="line1-haiku">{data.line1} </div>
                     <div className="line2-haiku">{data.line2}</div>
                     <div className="line3-haiku">{data.line3}</div>
-                    <div className="pull-right"> . {data.Author==='unknown'?'unknown':data.Author}</div>
+                    <div className="pull-right author"> . {data.Author==='unknown'?'unknown':data.Author}</div>
                 </div>
             </div>
 
@@ -71,7 +71,7 @@ const Haiku = (props) => {
                             value={`${appBaseUrl}/haiku/${data._id}`} 
                             ref={inptRef}
                         />
-                        <button className="btn-copy-link" onClick={()=>Copy()}> {copied?'Text Copied!':'Copy Link'} </button>
+                        <button className="btn-copy-link" onClick={()=>Copy()}> {copied?'Copied!':'Copy'} </button>
                     </div>
 
                     <div className="social-links text-center">
