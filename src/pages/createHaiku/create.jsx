@@ -165,23 +165,20 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection,
             />
             <div className="haiku-container" style={{backgroundImage: mode==false? 'url(./assets/lightBg.png)':'url(./assets/darkBg.png)', backgroundSize:'cover'}}>
                 
-                <div className="image-board">
-                    
-                    {
-                        data.imageUrl?
+                <div className="image-board">  
+                    { data.imageUrl?
                         <>
                             <div className="upload-pics-header">UPLOAD A PHOTO</div>
                             <img src={data.imageUrl} alt="upload" className='board-img' />
-                        </>:''
-                    }
-                         
-                  
+                        </>:''}
+ 
                 </div>
+
                 {lineErrorMsg.imageUrl?
                         <div className="warning-text text-center" style={{color:!mode?'#c22635':'#c22635'}}>
                             {'Please select an image'}
                         </div>:
-                    ''}
+                ''}
 
                 <div className="haiku-inputs-box text-center" ref={formRef} >
                     <div className="haiku-form-group">

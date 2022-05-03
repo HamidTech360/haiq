@@ -1,13 +1,8 @@
 import React, {useState, useContext, useRef, useEffect} from 'react';
-import {Link, useNavigate} from 'react-router-dom'
+import { useNavigate, useSearchParams} from 'react-router-dom'
 import axios from 'axios'
 import {apiUrl} from '../../config/config.json'
 import { getRemainingTime } from '../../utils/countdownTimer';
-// import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
-// import { Elements, CardNumberElement, CardExpiryElement, CardCvcElement } from "@stripe/react-stripe-js";
-import StripeCheckout from 'react-stripe-checkout'
-// import { loadStripe } from "@stripe/stripe-js";
-import UserContext from '../../context/userContext';
 import {appBaseUrl} from '../../config/config.json'
 import { Fab } from '@material-ui/core';
 import {GrFacebookOption} from 'react-icons/gr'
@@ -21,8 +16,11 @@ import './css/published.css'
 
 const Published = () => {
 
-    const store = useContext(UserContext)
-    const savedHaik = store.savedHaik
+    const [searchParams, setSearchParams] = useSearchParams()
+    const [data, setData] = useState({})
+    const [author, setAuthor] = useState(null)
+    const id = searchParams.get('id')
+    //console.log(id)
     const navigate = useNavigate()
     const inptRef = useRef()
     const [memorializeModal, setMemorializeModal] = useState(false)
@@ -34,96 +32,53 @@ const Published = () => {
         minutes:'00',
         seconds:'00'
     })
-    //console.log(store.savedHaik);
-
     
-
-    //Countdown timer calculator
-        // let future = new Date()
-        // future.setDate(future.getDate() + 1)
-        // let countdownDate = new Date(future).getTime()
-       // console.log('future is', future, 'while countdown is ', countdownDate);
-
-       
-        // let x = setInterval(function(){
-        //     let now = new Date().getTime()
-        //     let distance = countdownDate-now
-    
-        //     let days = Math.floor(distance/(1000*60*60*24))
-        //     let hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60))
-        //     let minutes = Math.floor((distance%(1000*60*60))/(1000*60)) 
-        //     let seconds =  Math.floor((distance%(1000*60))/1000)
-
-        //     const clone = {...timer}
-        //     clone['days'] = days
-        //     clone['hours'] = hours
-        //     clone['minutes'] = minutes
-        //     clone['seconds'] = seconds
-        //     setTimer(clone)
-    
-            // console.log(days, hours, minutes, seconds);
-            // if(distance < 0){
-            //     clearInterval(x)
-            //     alert('Item expired')
-            // }
-        // }, 1000)
-        //------------------------------
-
-
-    //http://localhost:3000/haiku/62631517df1498326647107a
     useEffect(()=>{
+        async function getHaik (){
+            try{
+                const response = await axios.get(`${apiUrl}/haiku/${id}`)
+               // console.log(response.data);
+                setData(response.data.data)
+                //console.log(data);
+            }catch(ex){
+                console.log(ex.response?.data);
+            }
+        }
+
+        getHaik()
+
+        
+    },[])
+
+    useEffect(()=>{
+
         const intervalId = setInterval(()=>{
             updateTimer()
         }, 1000)
-        return clearInterval(intervalId)
+         return ()=> clearInterval(intervalId)
 
        
-    }, [timer])
+    }, [data])
 
-    const renderStripe = ()=>{
-        
-        try{
-            return(
-                <div>
-                <StripeCheckout
-                    label='memorialize'
-                    className='btn-IWTMMH'
-                    id="btn-pay"
-                    token={handleToken}
-                    stripeKey='pk_test_51Kqg3REu5Qc79aW8jrKgq0qyQYwX5wvEAoxxS3Evq4ZrxesK9UPhHThsEaUjLCY9HRyIZOjmG21m3L65xBI4xhEq00r53djqjM'
-                    amount={10000}
-                    name='haik'
-                    ComponentClass='div'
-                    billingAddress
-                    shippingAddress
-                />
-                </div>
-            )
-        }catch(ex){
-            return(
-                <h1>Hello</h1>
-            )
-        }
+  
+
+    const handleAuthor = (e)=>{
+        setAuthor(e.currentTarget.value)
+        console.log(author);
     }
 
     const updateTimer = (countDown)=>{
-        setTimer(getRemainingTime('2022-04-26T11:11:35.192+00:00'))
+        setTimer(getRemainingTime(data?.createdAt))
     }
-
-    
 
     const AuthorshipDisplay = ()=>{
         setMemorializeModal(false)
         setAuthorship(true)
     }
-    const handleToken = async (token, address)=>{
-        const response = await axios.post(`${apiUrl}/haiku/pay`, {token})
-        console.log(response.data);
-    } 
+
     const Copy = ()=>{
         navigator.clipboard.writeText(inptRef.current.value)
-        setCopied(true)
-        
+        setCopied(true)    
     }
    
     return ( 
@@ -142,7 +97,7 @@ const Published = () => {
                     <input 
                         type="text" 
                         className="published-inpt" 
-                        value={`${appBaseUrl}/haiku/${savedHaik._id}`} 
+                        value={`${appBaseUrl}/haiku/${id}`} 
                         ref={inptRef}
                      />
                     <button className="btn-copy-link" onClick={()=>Copy()}> {copied?'Copied!':'Copy'} </button>
@@ -178,25 +133,25 @@ const Published = () => {
 
                 <div className="days-box text-center">
                     <div className="time">
-                        <div>{'00'}</div> <div>DAYS</div>
+                        <div>{timer.days}</div> <div>DAYS</div>
                     </div>
 
                     <div className="time">
-                        <div>{'00'}</div><div>HOURS</div>
+                        <div>{timer.hours}</div><div>HOURS</div>
                     </div>
 
                     <div className="time">
-                        <div>{'00'}</div><div>MINUTES</div>
+                        <div>{timer.minutes}</div><div>MINUTES</div>
                     </div>
 
                     <div className="time">
-                        <div>{'00'}</div><div>SECONDS</div>
+                        <div>{timer.seconds}</div><div>SECONDS</div>
                     </div>
                 </div>
 
                 <div className="published-btns">
                     <button className="btn-memorialize" onClick={()=>setMemorializeModal(true)} >Memorialize Forever <RiErrorWarningLine/> </button>
-                    <button className="btn-view-work" onClick={()=>navigate(`/haiku/${savedHaik._id}`)}>View Your Work</button>
+                    <button className="btn-view-work" onClick={()=>navigate(`/haiku/${id}`)}>View Your Work</button>
                 </div>
 
             </div> 
@@ -239,7 +194,7 @@ const Published = () => {
                         <label htmlFor="email">Author</label>
                         <div >
                             <input 
-                                
+                                onChange = {(e)=>handleAuthor(e)}
                                 type="text" 
                                 className='email-inpt'
                                 name='email-inpt'
@@ -249,32 +204,45 @@ const Published = () => {
                         <button className="btn-IWTMMH" style={{marginTop:'20px'}}>Finish</button>
                     </div>
 
-                    {/* <div className="memorialize-modal-btns">
-                        <button className="btn-IWTMMH">Finish</button>
-                    </div> */}
+                
                 </div>
             </Modal>
 
-            
+            <Modal show={false} size="xl">
+                <div className="checkout-modal">
+                    <div className="memorialize-modal-header text-center" id="checkout-header" >Memorialize your craft</div>
+                    <div className="payment-modal-text text-center">Keep You Art, Forever...</div>
+                    <div className="checkout-price text-center">TOTAL: $100.00</div>
 
-            
-                {/* <Modal show={true}>
-                    <div className='payment-modal'>
-                    <Elements stripe={stripeTestPromise}>
-                      <CardElement 
-                            options={{
-                                style:{
-                                    base:{
-                                        height:'100px',
-                                        backgroundColor:'red',
-                                        width:'100%'
-                                    }
-                                }
-                            }}
-                       />
-                       </Elements>
+                    <div className="checkout-form">
+
+                        <div className="form-group checkout-form-group card-number-group">
+                            <label htmlFor="card number">CARD NUMBER</label>
+                            <input type="text" className="form-control checkout-inpt " />
+                        </div>
+
+                        
+                        <div className="checkout-flex">
+                            <div className="form-group checkout-form-group cvv-group">
+                                <label htmlFor="card number">CVV</label>
+                                <input type="text" className=" form-control checkout-inpt" />
+                            </div>
+
+                            <div className="form-group checkout-form-group expiration-group">
+                                <label htmlFor="card number">EXPIRATION DATE</label>
+                                <input type="text" className="form-control checkout-inpt" />
+                            </div>
+                        </div>
+
+                        <div className="checkout-btns">
+                            <button className="checkout-cancel-btn">Cancel</button>
+                            <div className="checkout-submit-btn">Submit Payment</div>
+                        </div>
                     </div>
-                </Modal> */}
+
+                </div>
+            </Modal>
+
             
         </div>
      );

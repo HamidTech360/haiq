@@ -33,7 +33,7 @@ const HowItWorks = () => {
                             </div>
 
                             <div className="HIW-text">
-                                Upload an image from your own collection or a stock collection. 
+                                Express your chosen piece in HAIQ form. 
                             </div>
                         </div>
 
@@ -44,7 +44,7 @@ const HowItWorks = () => {
                             </div>
 
                             <div className="HIW-text">
-                            Express your chosen piece in haiku form 
+                                The marriage of a picture and your cut words perfect it to a HAIQ.
                             </div>
                         </div>
 
@@ -54,7 +54,7 @@ const HowItWorks = () => {
                             </div>
 
                             <div className="HIW-text">
-                            Streamline your thoughts for humanity in three lines and seventeen syllabes 5,7,5. 
+                                Streamline your thoughts for humanity in three lines and seventeen syllabes 5,7,5. 
                             </div>
                         </div>
 
@@ -64,7 +64,7 @@ const HowItWorks = () => {
                             </div>
 
                             <div className="HIW-text">
-                            Highlight your IQ and challenge yourself. 
+                                Highlight your IQ and challenge yourself. 
                             </div>
                         </div>
                     </div>

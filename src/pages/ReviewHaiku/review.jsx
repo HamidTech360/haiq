@@ -61,7 +61,7 @@ const ReviewHaiku = ({mode, SwitchMode, setSavedHaik})=>{
             console.log(response.data);
             if(response.data.status==="success"){
                 setSavedHaik(response.data.data)
-                navigate('/published')
+                navigate(`/published?id=${response.data.data._id}`)
             }
             setShowProgress(false)
         }catch(ex){
