@@ -1,9 +1,9 @@
-import React, {useState, useContext, useRef, useEffect} from 'react';
+import React, {useState,  useRef, useEffect} from 'react';
 import { useNavigate, useSearchParams} from 'react-router-dom'
 import axios from 'axios'
-import {apiUrl} from '../../config/config.json'
+import joi from 'joi-browser'
 import { getRemainingTime } from '../../utils/countdownTimer';
-import {appBaseUrl} from '../../config/config.json'
+import {appBaseUrl, apiUrl} from '../../config/config.json'
 import { Fab } from '@material-ui/core';
 import {GrFacebookOption} from 'react-icons/gr'
 import {AiOutlineTwitter, AiOutlineMail} from 'react-icons/ai'
@@ -18,12 +18,22 @@ const Published = () => {
 
     const [searchParams, setSearchParams] = useSearchParams()
     const [data, setData] = useState({})
-    const [author, setAuthor] = useState(null)
+    const [formData, setFormData] = useState({
+        card_number:'',
+        exp_month:'',
+        exp_year:'',
+        cvc:''
+    })
+    const [author, setAuthor] = useState('unknown')
     const id = searchParams.get('id')
-    //console.log(id)
     const navigate = useNavigate()
     const inptRef = useRef()
     const [memorializeModal, setMemorializeModal] = useState(false)
+    const [showSuccessModal, setShowSuccessModal] = useState(false)
+    const [showErrorModal, setShowErrorModal] = useState(false)
+    const [lineErrorMsg, setLineErrorMsg] = useState({})
+    const [showCheckout, setShowCheckOut] = useState(false)
+    const [showPaymentProgress, setShowPaymentProgress] = useState(false)
     const [authorship, setAuthorship] = useState(false)
     const [copied, setCopied] = useState(false)
     const [timer, setTimer]= useState({
@@ -37,34 +47,25 @@ const Published = () => {
         async function getHaik (){
             try{
                 const response = await axios.get(`${apiUrl}/haiku/${id}`)
-               // console.log(response.data);
                 setData(response.data.data)
-                //console.log(data);
             }catch(ex){
                 console.log(ex.response?.data);
             }
         }
-
-        getHaik()
-
-        
+        getHaik()    
     },[])
 
     useEffect(()=>{
-
         const intervalId = setInterval(()=>{
             updateTimer()
         }, 1000)
-         return ()=> clearInterval(intervalId)
-
-       
+         return ()=> clearInterval(intervalId)   
     }, [data])
 
   
 
     const handleAuthor = (e)=>{
         setAuthor(e.currentTarget.value)
-        console.log(author);
     }
 
     const updateTimer = (countDown)=>{
@@ -79,6 +80,66 @@ const Published = () => {
     const Copy = ()=>{
         navigator.clipboard.writeText(inptRef.current.value)
         setCopied(true)    
+    }
+    const handleAuthorshipModal = ()=>{
+        setAuthorship(false)
+        setShowCheckOut(true)
+    }
+    const handleChange = (e)=>{
+        const clone = {...formData}
+        clone[e.currentTarget.name] = e.currentTarget.value
+        setFormData(clone)
+    }
+    const validate = ()=>{
+        const schema = {
+            card_number:joi.string().required(),
+            cvc:joi.string().required(),
+            exp_month:joi.string().required(),
+            exp_year:joi.string().required(),
+        }
+        const {error} = joi.validate(formData, schema, {abortEarly:false})
+        
+        if(!error) return null
+
+        const errors = {}
+        for(let item of error.details){
+            errors[item.path[0]] = item.message
+        }
+       
+        return errors
+
+    }
+    const clearField = ()=>{
+        const clone = {...formData}
+        clone['card_number'] = ''
+        setFormData(clone)
+    }
+    const handleSubmitPayment = async ()=>{
+        console.log(formData);
+        const errors = validate()
+        if(errors){
+            console.log(errors);
+           return setLineErrorMsg(errors||{})
+        }
+        setShowPaymentProgress(true)
+        try{
+            const response = await axios.post(`${apiUrl}/haiku/pay`, {...formData, author, productId:id})
+            console.log(response.data);
+            if(response.data.status=='success'){
+                setShowSuccessModal(true)
+                setShowErrorModal(false)
+                setShowCheckOut(false)
+            }
+            setShowPaymentProgress(false)
+            clearField()
+
+        }catch(ex){
+            console.log(ex.response?.data);
+            setShowPaymentProgress(false)
+            setShowErrorModal(true)
+            setShowSuccessModal(false)
+            clearField()
+        }
     }
    
     return ( 
@@ -133,19 +194,19 @@ const Published = () => {
 
                 <div className="days-box text-center">
                     <div className="time">
-                        <div>{timer.days}</div> <div>DAYS</div>
+                        <div>{timer.days || '00'}</div> <div>DAYS</div>
                     </div>
 
                     <div className="time">
-                        <div>{timer.hours}</div><div>HOURS</div>
+                        <div>{timer.hours || '00'}</div><div>HOURS</div>
                     </div>
 
                     <div className="time">
-                        <div>{timer.minutes}</div><div>MINUTES</div>
+                        <div>{timer.minutes || '00'}</div><div>MINUTES</div>
                     </div>
 
                     <div className="time">
-                        <div>{timer.seconds}</div><div>SECONDS</div>
+                        <div>{timer.seconds || '00'}</div><div>SECONDS</div>
                     </div>
                 </div>
 
@@ -182,7 +243,7 @@ const Published = () => {
             <Modal show={authorship}>
                 <div className="memorialize-modal" id="authorship-modal">
                     <div className="pull-righ skip">
-                        <span className="pull-right" onClick={()=>setAuthorship(false)}>Skip</span>
+                        <span className="pull-right" onClick={()=>handleAuthorshipModal()}>Skip</span>
                     </div>
                     
                     <div className="memorialize-modal-header text-center">Authorship</div>
@@ -201,14 +262,14 @@ const Published = () => {
 
                             />
                         </div>
-                        <button className="btn-IWTMMH" style={{marginTop:'20px'}}>Finish</button>
+                        <button onClick={()=>handleAuthorshipModal()} className="btn-IWTMMH" style={{marginTop:'20px'}}>Finish</button>
                     </div>
 
                 
                 </div>
             </Modal>
 
-            <Modal show={false} size="xl">
+            <Modal show={showCheckout} size="xl">
                 <div className="checkout-modal">
                     <div className="memorialize-modal-header text-center" id="checkout-header" >Memorialize your craft</div>
                     <div className="payment-modal-text text-center">Keep You Art, Forever...</div>
@@ -216,30 +277,75 @@ const Published = () => {
 
                     <div className="checkout-form">
 
-                        <div className="form-group checkout-form-group card-number-group">
-                            <label htmlFor="card number">CARD NUMBER</label>
-                            <input type="text" className="form-control checkout-inpt " />
-                        </div>
+                        <div className="checkout-flex-card">
+                            <div className="form-group checkout-form-group card-number-group ">
+                                <label className='checkout-inpt-label' htmlFor="card number">CARD NUMBER</label>
+                                <input onChange={(e)=>handleChange(e)} value={formData.card_number} type="text" name='card_number' className="form-control checkout-inpt " />
+                                {lineErrorMsg.card_number?
+                                <div className="payment-warning-text" >
+                                {'Please enter a valid Card Number'}
+                                </div>:''}
+                            </div>
 
+                            <div className="form-group checkout-form-group cvv-group">
+                                 <label className='checkout-inpt-label' htmlFor="cvvr">CVC</label>
+                                 <input onChange={(e)=>handleChange(e)} value={formData.cvc} type="number" name='cvc' className=" form-control checkout-inpt" />
+                                 {lineErrorMsg.cvc?
+                                <div className="payment-warning-text" >
+                                {'Please enter a valid CVC'}
+                                </div>:''}
+                            </div>
+                        </div>
                         
                         <div className="checkout-flex">
                             <div className="form-group checkout-form-group cvv-group">
-                                <label htmlFor="card number">CVV</label>
-                                <input type="text" className=" form-control checkout-inpt" />
+                                <label className='checkout-inpt-label' htmlFor="exp month">EXPIRATION MONTH</label>
+                                <input onChange={(e)=>handleChange(e)} value={formData.exp_month} type="number" name='exp_month' className=" form-control checkout-inpt" />
+                                {lineErrorMsg.exp_month?
+                                <div className="payment-warning-text" >
+                                {'Please enter card expiration month'}
+                                </div>:''}
                             </div>
 
                             <div className="form-group checkout-form-group expiration-group">
-                                <label htmlFor="card number">EXPIRATION DATE</label>
-                                <input type="text" className="form-control checkout-inpt" />
+                                <label className='checkout-inpt-label' htmlFor="exp year">EXPIRATION YEAR</label>
+                                <input onChange={(e)=>handleChange(e)} value={formData.exp_year} type="number" name='exp_year' className="form-control checkout-inpt" />
+                                {lineErrorMsg.exp_year?
+                                <div className="payment-warning-text" >
+                                {'Please enter card expiration year'}
+                                </div>:''}
                             </div>
                         </div>
 
                         <div className="checkout-btns">
-                            <button className="checkout-cancel-btn">Cancel</button>
-                            <div className="checkout-submit-btn">Submit Payment</div>
+                            <button className="checkout-cancel-btn" onClick={()=>setShowCheckOut(false)}>Cancel</button>
+                            <button className="checkout-submit-btn" onClick={()=>handleSubmitPayment()}> Submit Payment </button>
                         </div>
                     </div>
 
+                </div>
+            </Modal>
+
+            <Modal show={showPaymentProgress}>
+                <div className="paymet-processing-modal text-center">
+                    <img src="../../assets/loader.gif" className='payment-preloader' alt="loader" />
+                    <div className="payment-processing-text">Your payment is being processed. Please do not close Modal</div>
+                </div>
+            </Modal>
+
+            <Modal show={showSuccessModal}>
+                <div className="success-modal text-center">
+                    <img src="../../assets/success.png" className='payment-preloader' alt="loader" />
+                    <div className="payment-processing-text"><h5>Transaction successful. Your haik has been memorialized</h5></div>
+                    <div className="cancel cancel-success" onClick={()=>setShowSuccessModal(false)}>Cancel</div>
+                </div>
+            </Modal>
+
+            <Modal show={showErrorModal}>
+                <div className="success-modal text-center">
+                    <img src="../../assets/failure.png" className='payment-preloader' alt="loader" />
+                    <div className="payment-processing-text"><h5>Transaction Failed.</h5> Unable to charge this card</div>
+                    <div className="cancel cancel-success" onClick={()=>setShowErrorModal(false)}>Cancel</div>
                 </div>
             </Modal>
 

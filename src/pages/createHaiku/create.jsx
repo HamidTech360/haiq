@@ -17,6 +17,9 @@ import './css/create.css'
 const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection, mode, SwitchMode})=>{
     const imgRef = useRef()
     const formRef = useRef()
+    const line1Ref = useRef()
+    const line2Ref = useRef()
+    const line3Ref = useRef()
     const navigate = useNavigate()
     const store = useContext(UserContext)
     const data = store.formData
@@ -42,10 +45,19 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection,
 
     useEffect(()=>{
         console.log(data)
+        const line1Syllable = syllable(line1Ref.current.value)
+        const line2Syllable = syllable(line2Ref.current.value)
+        const line3Syllable = syllable(line3Ref.current.value)
+
+        const cloneSyllableCount = {...syllableCount}
+        cloneSyllableCount['line1'].currentValue = line1Syllable
+        cloneSyllableCount['line2'].currentValue = line2Syllable
+        cloneSyllableCount['line3'].currentValue = line3Syllable
+        setSyllableCount(cloneSyllableCount)
+        
         async function getImages (){
             try{
                 const response = await axios.get(`${unsplashApi}&count=20&page=2`)
-                // console.log(response.data);
                 setAPiImages(response.data)
             }catch(err){
                 console.log(err.response?.message);
@@ -132,10 +144,8 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection,
             setLineErrorMsg(errors||{})
             return formRef.current.scrollIntoView() 
         }
-        if(syllableErrMsg.line1!==null || syllableErrMsg.line2!==null || syllableErrMsg.line3 !== null) {
-            
-            return formRef.current.scrollIntoView()
-           
+        if(syllableErrMsg.line1 || syllableErrMsg.line2 || syllableErrMsg.line3) {
+            return formRef.current.scrollIntoView()  
         }
         
         navigate('/review')
@@ -189,6 +199,7 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection,
                             }}
                             type="text"
                             name="line1" 
+                            ref={line1Ref}
                             onChange={(e)=>handleInputChange(e, 5)}
                             value={data.line1}
                             onClick={(e)=>allowEdit(e)}
@@ -216,7 +227,8 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection,
                         <input
                              style={{
                                 border:syllableErrMsg.line2? '1px solid #c22635':''
-                            }} 
+                            }}
+                            ref={line2Ref} 
                             name="line2" 
                             value={data.line2}
                             onChange={(e)=>handleInputChange(e, 7)}
@@ -246,6 +258,7 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection,
                             style={{
                                 border:syllableErrMsg.line3? '1px solid #c22635':''
                             }}
+                             ref={line3Ref}
                              name="line3" 
                              value={data.line3}
                              onChange={(e)=>handleInputChange(e, 5)}
