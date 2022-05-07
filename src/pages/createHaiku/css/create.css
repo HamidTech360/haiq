@@ -89,6 +89,11 @@
 .fish{
     color: #c22635;
 }
+.search-box{
+    padding-left:50px;
+    padding-right:50px;
+    padding-top: 50px;
+}
 
 
 
@@ -97,6 +102,11 @@
         max-width:90% ;
        
         margin-left: 20px;
+    }
+    .search-box{
+        padding-left:30px;
+        padding-right:30px;
+        padding-top: 50px;
     }
     .haiku-container{
         padding-top: 130px;

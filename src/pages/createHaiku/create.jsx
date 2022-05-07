@@ -5,7 +5,7 @@ import UserContext from '../../context/userContext'
 import Modal from 'react-bootstrap/Modal'
 import axios from 'axios'
 import joi from 'joi-browser'
-import {unsplashApi} from '../../config/config.json'
+import {unsplashApi, searchUnsplashApi} from '../../config/config.json'
 
 //components
 import Header from '../../components/header/header'
@@ -17,6 +17,7 @@ import './css/create.css'
 const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection, mode, SwitchMode})=>{
     const imgRef = useRef()
     const formRef = useRef()
+    const searchRef = useRef()
     const line1Ref = useRef()
     const line2Ref = useRef()
     const line3Ref = useRef()
@@ -152,10 +153,17 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection,
     }
    
 
-    
-
-
-    // const count = [1,2,3,4,5,6,7,8,9,10]
+    const handleSearch = async ()=>{
+        const value = searchRef.current.value
+        try{
+            const response = await axios.get(`${searchUnsplashApi}&query=${value}`)
+            console.log(response.data);
+            setAPiImages(response.data.results)
+        }catch(err){
+            console.log(err.response?.data)
+            setAPiImages([])
+        }
+    }
     return(
        
         <div className="create-haiku">
@@ -286,11 +294,18 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection,
             <Modal size="xl" show={true}>
                 <div className="image-display">
                   
-                   
+                    <div className="search-box">
+                        <input type="search" 
+                               className="form-control search-inpt" 
+                               placeholder='Search for images' 
+                               onChange={()=>handleSearch()} 
+                               ref={searchRef}
+                        />
+                    </div>          
                     <div className="img-grid">
                         {apiImages.map((item, i)=>
                             <div key={i} style={{border:item.selected?'4px solid #22ED0B':''}} className="img-grid-item" onClick={()=>selectModalImages(item, i)}>
-                                <img src={item?.urls.raw} alt="" className='apiImages' />
+                                <img src={item?.urls.small} alt="" className='apiImages' />
                             </div>
                         )}
                         </div>
