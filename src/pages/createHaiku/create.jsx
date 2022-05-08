@@ -157,7 +157,7 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection,
         const value = searchRef.current.value
         try{
             const response = await axios.get(`${searchUnsplashApi}&query=${value}`)
-            console.log(response.data);
+            //console.log(response.data);
             setAPiImages(response.data.results)
         }catch(err){
             console.log(err.response?.data)
