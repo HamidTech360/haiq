@@ -1,7 +1,8 @@
 #preview-board{
     padding: 0px;
-    min-height: 600px;
-    padding-bottom: 40px;
+    /* min-height: 600px; */
+    height: fit-content;
+    padding-bottom: 20px;
 }
 .preview-haiku{
     overflow: hidden;
@@ -73,6 +74,9 @@
     color: white;
     font-size: 20px;
 }
+#preview-board-img{
+    height: 450px;
+}
 
 .cancel-modal{
     margin-top: 20px;
@@ -90,6 +94,9 @@
     #preview-board{
         margin-left:0px !important;
         margin:auto !important;
+    }
+    #preview-board-img{
+        height: 350px;
     }
     .review-btns{
         width: 100%;

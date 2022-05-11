@@ -94,7 +94,7 @@ const ReviewHaiku = ({mode, SwitchMode, setSavedHaik})=>{
             >
                 
                 <div className="image-board" id="preview-board" style={{backgroundColor:mode==false? 'white':'#C4C4C4'}}>
-                    <img src={data.imageUrl} alt="upload" className='board-img' />    
+                    <img src={data.imageUrl} alt="upload" className='board-img' id="preview-board-img" />    
                     <div className="text-center review-texts">
                     <div className="review-line1"> {data.line1} </div>
                     <div className="review-line2"> {data.line2} </div>
@@ -139,7 +139,7 @@ const ReviewHaiku = ({mode, SwitchMode, setSavedHaik})=>{
                         </div>:''}
 
                         </div>
-                        <button className="btn-continue-publish" onClick={()=>publish()} >{showProgress?<CircularProgress size={25} />:'Continue'}</button>
+                        <button className="btn-continue-publish" onClick={()=>publish()} >{showProgress?<span className="circularProgress"><CircularProgress size={25}/></span> :'Continue'}</button>
                         <div className="text-center cancel-modal" onClick={()=>setOpenSaveModal(false)} >Cancel</div>
                     </div>
                 </div>

@@ -4,7 +4,7 @@ export function getRemainingTime (timestamp){
     
   // console.log('distance');
     let future = new Date(timestamp)
-    future.setDate(future.getDate() + 30)
+    future.setDate(future.getDate() + 17)
     let Future = new Date(future).getTime()
 
     let now = new Date().getTime()

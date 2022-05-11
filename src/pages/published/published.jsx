@@ -151,7 +151,7 @@ const Published = () => {
                 <img src="../../assets/logo.png" alt="logo" className="header-logo" />
             </div>
             <div className="published-body text-center">
-                <div className="published-header">Congratulations! Your Haiq Shines</div>
+                <div className="published-header">Congratulations! Your HAIQ Shines</div>
                 <div className="share-work">Share your work</div>
 
                 <div className="publish-form-group">
@@ -221,7 +221,7 @@ const Published = () => {
                 <div className="memorialize-modal">
                     <div className="memorialize-modal-header text-center">Memorialize your craft</div>
                     <div className="memorialize-modal-text text-center">
-                        Commemorate your work. rise to the next level and show the world your creation. 
+                        Commemorate your work. Rise to the next level and show the world your creation. 
                     </div>
                     <div className="memorialize-modal-text text-center">
                         Make it last exquisitely forever. 
@@ -234,7 +234,7 @@ const Published = () => {
 
                     <div className="memorialize-modal-btns">
                         {/* {StripeCheckout? renderStripe():''} */}
-                        <button className="btn-IWTMMH" onClick={()=>AuthorshipDisplay()} >I want to memorialize my Haiq</button>
+                        <button className="btn-IWTMMH" onClick={()=>AuthorshipDisplay()} >I want to memorialize my HAIQ</button>
                         <button className="btn-memorialize-cancel" onClick={()=>setMemorializeModal(false)}>Cancel</button>
                     </div>
                 </div>
@@ -336,7 +336,7 @@ const Published = () => {
             <Modal show={showSuccessModal}>
                 <div className="success-modal text-center">
                     <img src="../../assets/success.png" className='payment-preloader' alt="loader" />
-                    <div className="payment-processing-text"><h5>Transaction successful. Your haik has been memorialized</h5></div>
+                    <div className="payment-processing-text"><h5>Transaction successful. Your HAIQ has been memorialized</h5></div>
                     <div className="cancel cancel-success" onClick={()=>setShowSuccessModal(false)}>Cancel</div>
                 </div>
             </Modal>
