@@ -139,7 +139,7 @@ const ReviewHaiku = ({mode, SwitchMode, setSavedHaik})=>{
                         </div>:''}
 
                         </div>
-                        <button className="btn-continue-publish" onClick={()=>publish()} >{showProgress?<span className="circularProgress"><CircularProgress size={25}/></span> :'Continue'}</button>
+                        <button className="btn-continue-publish" onClick={()=>publish()} >{showProgress?<span className="circularProgress"><CircularProgress size={25} style={{marginTop:'10px'}}/></span> :'Continue'}</button>
                         <div className="text-center cancel-modal" onClick={()=>setOpenSaveModal(false)} >Cancel</div>
                     </div>
                 </div>

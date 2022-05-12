@@ -12,6 +12,10 @@
     margin-top: 15px;
     margin-right: 20px;
 }
+.header-tab{
+    font-size: 14px !important;
+    font-weight: 700 !important;
+}
 
 @media screen and (max-width:768px) {
     .page-header{
@@ -29,5 +33,20 @@
         align-items: center !important;
         align-self: left;
         font-weight: 600;
+    }
+}
+
+
+@media screen and (max-width:320px) {
+    .header-tab{
+        font-size: 11px !important;
+       
+    }
+}
+
+@media screen and (max-width:280px) {
+    .header-tab{
+        font-size: 10px !important;
+        margin-right: -10px !important;
     }
 }

@@ -83,9 +83,9 @@ const Header = ({handleOpenModal, SwitchMode, mode, triggerClick, activeTab, han
             <div className="pull-right">
                 
                 <Tabs value={activeTab} className={classes.tabs}   onChange={handleChange} aria-label="nav tabs example">
-                    <Tab label="PICK A PHOTO" style={{fontSize:'13px', fontWeight:'700'}}  onClick={()=>handleOpenModal()}/>
-                    <Tab label="UPLOAD A PHOTO" style={{fontSize:'13px', fontWeight:'700'}} onClick={()=>triggerClick()} />
-                    <Tab onClick={()=>handleReview()} label="REVIEW" style={{fontSize:'14px', fontWeight:'700'}} />
+                    <Tab className="header-tab" label="PICK A PHOTO"   onClick={()=>handleOpenModal()}/>
+                    <Tab className="header-tab" label="UPLOAD A PHOTO"  onClick={()=>triggerClick()} />
+                    <Tab className="header-tab" onClick={()=>handleReview()} label="REVIEW" />
                 </Tabs>
             </div>
             <span className='pull-right switch-label hideOnMobile' >
