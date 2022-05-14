@@ -10,6 +10,7 @@ import {AiOutlineTwitter, AiOutlineMail} from 'react-icons/ai'
 import {FaLinkedin, FaEnvelope} from 'react-icons/fa'
 import {RiErrorWarningLine} from 'react-icons/ri'
 import Modal from 'react-bootstrap/Modal'
+import {FacebookShareButton, LinkedinShareButton, TwitterShareButton, EmailShareButton} from 'react-share'
 
 //styles
 import './css/published.css'
@@ -26,6 +27,7 @@ const Published = () => {
     })
     const [author, setAuthor] = useState('unknown')
     const id = searchParams.get('id')
+    const publishedUrl = `${appBaseUrl}/haiku/${id}`
     const navigate = useNavigate()
     const inptRef = useRef()
     const [memorializeModal, setMemorializeModal] = useState(false)
@@ -158,7 +160,7 @@ const Published = () => {
                     <input 
                         type="text" 
                         className="published-inpt" 
-                        value={`${appBaseUrl}/haiku/${id}`} 
+                        value={publishedUrl} 
                         ref={inptRef}
                      />
                     <button className="btn-copy-link" onClick={()=>Copy()}> {copied?'Copied!':'Copy'} </button>
@@ -166,29 +168,38 @@ const Published = () => {
 
                 <div className="social-links">
                    
+                    <LinkedinShareButton title="Modern HAIQ" summary={`View my published HAIQ via ${appBaseUrl}`} source="ModernHaiq">
                     <span className="fabs">
                        <Fab style={{backgroundColor:'#0077B5', color:'white', height:'40px', width:'40px'}}>
                         <FaLinkedin size={20} />
                        </Fab>
                     </span>
+                    </LinkedinShareButton>
+        
 
+                    <FacebookShareButton url={publishedUrl} quote={publishedUrl} >
                     <span className="fabs">
                        <Fab style={{backgroundColor:'#3B5998', color:'white',  height:'40px', width:'40px'}}>
                             <GrFacebookOption size={20} />
                        </Fab>
                     </span>
-
+                    </FacebookShareButton>
+                    
+                    <TwitterShareButton title="Modern HAIQ" via={appBaseUrl} hashtags={['ModernHaiq']}>
                     <span className="fabs">
                        <Fab style={{backgroundColor:'#55ACEE', color:'white', height:'40px', width:'40px'}}>
                            <AiOutlineTwitter size={20} />
                        </Fab>
                     </span>
+                    </TwitterShareButton>
 
+                    <EmailShareButton subject="View my HAIQ" body={appBaseUrl}>
                     <span className="fabs">
                        <Fab style={{backgroundColor:'#0971BD', color:'white', height:'40px', width:'40px'}}>
                           <FaEnvelope size={20} />
                        </Fab>
                     </span>
+                    </EmailShareButton>
 
                 </div>
 
