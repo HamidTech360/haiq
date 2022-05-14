@@ -168,7 +168,7 @@ const Published = () => {
 
                 <div className="social-links">
                    
-                    <LinkedinShareButton title="Modern HAIQ" summary={`View my published HAIQ via ${appBaseUrl}`} source="ModernHaiq">
+                    <LinkedinShareButton title="Modern HAIQ" summary={`View my published HAIQ via ${appBaseUrl}`} source="ModernHaiq" url={appBaseUrl}>
                     <span className="fabs">
                        <Fab style={{backgroundColor:'#0077B5', color:'white', height:'40px', width:'40px'}}>
                         <FaLinkedin size={20} />
@@ -185,7 +185,7 @@ const Published = () => {
                     </span>
                     </FacebookShareButton>
                     
-                    <TwitterShareButton title="Modern HAIQ" via={appBaseUrl} hashtags={['ModernHaiq']}>
+                    <TwitterShareButton url={appBaseUrl} title="Modern HAIQ" via={appBaseUrl} hashtags={['ModernHaiq']}>
                     <span className="fabs">
                        <Fab style={{backgroundColor:'#55ACEE', color:'white', height:'40px', width:'40px'}}>
                            <AiOutlineTwitter size={20} />
