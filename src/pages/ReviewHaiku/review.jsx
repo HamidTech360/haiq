@@ -57,7 +57,7 @@ const ReviewHaiku = ({mode, SwitchMode, setSavedHaik})=>{
         setShowProgress(true)
         console.log(data);
         try{
-            const response = await axios.post(`${apiUrl}/haiku`, {...data, email:userEmail})
+            const response = await axios.post(`${apiUrl}/haiku`, {...data, email:userEmail, backgroundMode:mode==false?"light":"dark"})
             console.log(response.data);
             if(response.data.status==="success"){
                 setSavedHaik(response.data.data)

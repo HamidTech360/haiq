@@ -21,11 +21,11 @@
    height: 100%;
 }
 .haiku-board{
-    margin-top: 70px;
-    margin-left: 70px;
-    margin-right: 70px;
     background-color: white;
     padding-bottom: 30px;
+    max-width: 600px;
+    margin: auto;
+    margin-top: 70px;
 }
 .haiku-image{
     height: 500px;
@@ -63,7 +63,7 @@
         padding-left: 20px;
     }
     .haiku-image{
-        height: 400px;
+        height: 350px;
     }
     .haiku-text{
         font-size: 15px;

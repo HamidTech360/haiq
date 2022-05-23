@@ -10,6 +10,7 @@ import {GrFacebookOption} from 'react-icons/gr'
 import {AiOutlineTwitter, AiOutlineMail} from 'react-icons/ai'
 import {FaLinkedin, FaEnvelope} from 'react-icons/fa'
 import {RiErrorWarningLine} from 'react-icons/ri'
+import {FacebookShareButton, LinkedinShareButton, TwitterShareButton, EmailShareButton} from 'react-share'
 
 import './css/haiku.css'
 
@@ -17,6 +18,7 @@ const Haiku = (props) => {
    const inptRef = useRef()
    const {id:haikuId} = useParams()
    const navigate = useNavigate()
+   const publishedUrl = `${appBaseUrl}/haiku/${haikuId}`
    const [data, setData] = useState({})
    const [showModal, setShowModal] = useState(false)
    const [copied, setCopied] = useState(false)
@@ -43,7 +45,7 @@ const Haiku = (props) => {
     }
     
     return ( 
-        <div className="haiku">
+        <div className="haiku" style={{backgroundImage:data.backgroundMode=="light"?"url(../../assets/lightBg.png)":"url(../../assets/darkBg.png)"}}>
             <div className="haiku-header">
                 <img src="../../assets/logo.png" alt="logo" className='header-logo' />
                 <button className="pull-right btn-share" onClick={()=>setShowModal(true)}>
@@ -75,30 +77,39 @@ const Haiku = (props) => {
                     </div>
 
                     <div className="social-links text-center">
-                   
-                        <span className="fabs">
-                        <Fab style={{backgroundColor:'#0077B5', color:'white', height:'40px', width:'40px'}}>
-                            <FaLinkedin size={20} />
-                        </Fab>
-                        </span>
+                        <LinkedinShareButton title="Modern HAIQ" summary={`View my published HAIQ via ${publishedUrl}`} source="ModernHaiq" url={publishedUrl}>
+                            <span className="fabs">
+                            <Fab style={{backgroundColor:'#0077B5', color:'white', height:'40px', width:'40px'}}>
+                                <FaLinkedin size={20} />
+                            </Fab>
+                            </span>
+                        </LinkedinShareButton>
 
-                        <span className="fabs">
-                        <Fab style={{backgroundColor:'#3B5998', color:'white',  height:'40px', width:'40px'}}>
-                                <GrFacebookOption size={20} />
-                        </Fab>
-                        </span>
+                        <FacebookShareButton url={publishedUrl} quote={publishedUrl} >
+                            <span className="fabs">
+                            <Fab style={{backgroundColor:'#3B5998', color:'white',  height:'40px', width:'40px'}}>
+                                    <GrFacebookOption size={20} />
+                            </Fab>
+                            </span>
+                        </FacebookShareButton>
 
-                        <span className="fabs">
-                        <Fab style={{backgroundColor:'#55ACEE', color:'white', height:'40px', width:'40px'}}>
-                            <AiOutlineTwitter size={20} />
-                        </Fab>
-                        </span>
+                        
+                        <TwitterShareButton url={publishedUrl} title="Modern HAIQ" via={publishedUrl} hashtags={['ModernHaiq']}>
+                            <span className="fabs">
+                            <Fab style={{backgroundColor:'#55ACEE', color:'white', height:'40px', width:'40px'}}>
+                                <AiOutlineTwitter size={20} />
+                            </Fab>
+                            </span>
+                        </TwitterShareButton>
 
-                        <span className="fabs">
-                        <Fab style={{backgroundColor:'#0971BD', color:'white', height:'40px', width:'40px'}}>
-                            <FaEnvelope size={20} />
-                        </Fab>
-                        </span>
+
+                        <EmailShareButton subject="View my HAIQ" body={publishedUrl}>
+                            <span className="fabs">
+                            <Fab style={{backgroundColor:'#0971BD', color:'white', height:'40px', width:'40px'}}>
+                                <FaEnvelope size={20} />
+                            </Fab>
+                            </span>
+                        </EmailShareButton>
 
                     </div>
 
