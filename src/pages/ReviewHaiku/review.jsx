@@ -104,7 +104,7 @@ const ReviewHaiku = ({mode, SwitchMode, setSavedHaik})=>{
                 
                <div className="review-btns">
                    <Link to="/create"><button className="btn-continue-editing">Continue Editing</button></Link>
-                   <button className="btn-publish pull-right" onClick={()=>review()}>Publish Haiku</button>
+                   <button className="btn-publish pull-right" onClick={()=>review()}>Publish HAIQ</button>
                </div>
             </div>
             <ToastContainer style={{backgroundColor:'red'}} />

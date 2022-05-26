@@ -94,10 +94,10 @@ const Published = () => {
     }
     const validate = ()=>{
         const schema = {
-            card_number:joi.string().required(),
-            cvc:joi.string().required(),
+            card_number:joi.string().required().min(16).max(16),
+            cvc:joi.string().required().min(3).max(3),
             exp_month:joi.string().required(),
-            exp_year:joi.string().required(),
+            exp_year:joi.string().required().min(4).max(4),
         }
         const {error} = joi.validate(formData, schema, {abortEarly:false})
         
