@@ -95,7 +95,7 @@ const Published = () => {
     const validate = ()=>{
         const schema = {
             card_number:joi.string().required().min(16).max(16),
-            cvc:joi.string().required().min(3).max(3),
+            cvc:joi.number().required(),
             exp_month:joi.string().required(),
             exp_year:joi.string().required().min(4).max(4),
         }
@@ -300,7 +300,7 @@ const Published = () => {
 
                             <div className="form-group checkout-form-group cvv-group">
                                  <label className='checkout-inpt-label' htmlFor="cvvr">CVC</label>
-                                 <input onChange={(e)=>handleChange(e)} value={formData.cvc} type="number" name='cvc' className=" form-control checkout-inpt" />
+                                 <input onChange={(e)=>handleChange(e)} value={formData.cvc} type="text" name='cvc' className=" form-control checkout-inpt" />
                                  {lineErrorMsg.cvc?
                                 <div className="payment-warning-text" >
                                 {'Please enter a valid CVC'}
