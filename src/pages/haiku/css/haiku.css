@@ -28,7 +28,7 @@
     margin-top: 70px;
 }
 .haiku-image{
-    height: 500px;
+    height: unset;
     width: 100%;
 }
 .haiku-text{
@@ -62,12 +62,11 @@
         padding-right: 30px;
         padding-left: 20px;
     }
-    .haiku-image{
-        height: 350px;
-    }
+
     .haiku-text{
         font-size: 15px;
-        padding-right: 0px;
+        padding-right: 10px;
+        padding-left: 10px;
     }
     .line1-haiku, .line2-haiku,.line3-haiku{
         margin-bottom: 10px;
