@@ -7,6 +7,7 @@
 .image-board{
     width: 600px;
     height: fit-content;
+    min-height: 300px;
     background-color: white;
     margin: auto;
    padding: 20px;
