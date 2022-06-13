@@ -20,7 +20,7 @@ const Enrich = () => {
                         Sharp depiction is key to a sophisticated soul.
                     </div>
                     <Link to="create">
-                       <button className="btn-enrich">Create A HAIQ</button>
+                       <button className="btn-enrich">Create a HAIQ</button>
                     </Link>
                     
                 </div>

@@ -38,6 +38,7 @@ const Published = () => {
     const [showPaymentProgress, setShowPaymentProgress] = useState(false)
     const [authorship, setAuthorship] = useState(false)
     const [copied, setCopied] = useState(false)
+    const months = ['01','02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
     const [timer, setTimer]= useState({
         days:'00',
         hours:'00',
@@ -259,7 +260,7 @@ const Published = () => {
                     
                     <div className="memorialize-modal-header text-center">Authorship</div>
                     <div className="memorialize-modal-text text-center">
-                        Sign your masterpiece in 17 characters. 
+                        Sign below to put a stamp on your hard work. Max character count is 17 characters 
                     </div>
 
                     <div className="save-haiku-form-group" id="authorship-form-group">
@@ -311,7 +312,13 @@ const Published = () => {
                         <div className="checkout-flex">
                             <div className="form-group checkout-form-group cvv-group">
                                 <label className='checkout-inpt-label' htmlFor="exp month">EXPIRATION MONTH</label>
-                                <input onChange={(e)=>handleChange(e)} value={formData.exp_month} type="number" name='exp_month' className=" form-control checkout-inpt" />
+                                {/* <input onChange={(e)=>handleChange(e)} value={formData.exp_month} type="number" name='exp_month' className=" form-control checkout-inpt" /> */}
+                                <select name="exp_month" id="" className="form-control checkout-inpt" value={formData.exp_month} onChange={(e)=>handleChange(e)}>
+                                    <option value="">Seelect Month</option>
+                                    {months.map((item, i)=>
+                                        <option value={item}>{item}</option>
+                                    )}
+                                </select>
                                 {lineErrorMsg.exp_month?
                                 <div className="payment-warning-text" >
                                 {'Please enter card expiration month'}
