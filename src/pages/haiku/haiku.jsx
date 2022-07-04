@@ -10,6 +10,7 @@ import {GrFacebookOption} from 'react-icons/gr'
 import {AiOutlineTwitter, AiOutlineMail} from 'react-icons/ai'
 import {FaLinkedin, FaEnvelope} from 'react-icons/fa'
 import {RiErrorWarningLine} from 'react-icons/ri'
+import Memorialize from '../../utils/memorialize';
 import {FacebookShareButton, LinkedinShareButton, TwitterShareButton, EmailShareButton} from 'react-share'
 
 import './css/haiku.css'
@@ -22,6 +23,7 @@ const Haiku = (props) => {
    const [data, setData] = useState({})
    const [showModal, setShowModal] = useState(false)
    const [copied, setCopied] = useState(false)
+   const [memorializeModal, setMemorializeModal] = useState(false)
     useEffect(()=>{
        
         async function getHaiku (){
@@ -29,6 +31,10 @@ const Haiku = (props) => {
                 const response = await axios.get(`${apiUrl}/haiku/${haikuId}`)
                 console.log(response.data.data);
                 setData(response.data.data)
+                // if(response.data.data.expired){
+                //    setMemorializeModal(true)
+                // }
+                setMemorializeModal(response.data.data.expired)
             }catch(err){
                 console.log(err.response?.data); 
                  navigate('/notfound')
@@ -42,6 +48,9 @@ const Haiku = (props) => {
         navigator.clipboard.writeText(inptRef.current.value)
         setCopied(true)
         
+    }
+    const handleMemorializeModal = (value)=>{
+        setMemorializeModal(value)
     }
     
     return ( 
@@ -62,6 +71,13 @@ const Haiku = (props) => {
                     <div className="pull-right author"> {data.Author==='unknown'?'':data.Author}</div>
                 </div>
             </div>
+
+            <Memorialize
+                handleMemorializeModal={handleMemorializeModal}
+                memorializeModal={memorializeModal}
+                id={data._id}
+                enableCancel = {false}
+            />
 
             <Modal style={{marginTop:'70px'}} size="xl" show={showModal}>
                   <div className="haiku-modal">

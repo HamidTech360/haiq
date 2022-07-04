@@ -22,7 +22,7 @@ const Definition = () => {
                             <div className="WIH-normal">
                                 
                                 A historically Japanese unrhymed poem consisting of three lines and seventeen syllables. It’s arranged five, seven, five respectively. The origin of this format from Japan emerged in 1895-1900. 
-                                Allusions and contrast often in native fuel traditional haiku’s.
+                                Allusions and contrast often in nature fuel traditional haiku’s.
                             </div>
                         </div>
                     </div>

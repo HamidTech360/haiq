@@ -15,7 +15,7 @@ const Footer = () => {
                     <img src="../../assets/logo.png" alt="logo" className="footer-logo" />
                 </div>
                 <div className="footer-text col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                    <Link to="create" style={{textDecoration:'none'}}><span className='footer-text-item'>Create a Haiku</span></Link>
+                    <Link to="create" style={{textDecoration:'none'}}><span className='footer-text-item'>Create a HAIQ</span></Link>
                     <span className="footer-text-item ">
                         <img src="../../assets/elipse.png" alt="elipse" /> 
                      </span>

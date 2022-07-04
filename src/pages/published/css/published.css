@@ -129,6 +129,7 @@
 .btn-IWTMMH{
     background-color: black;
     color: white;
+    
 }
 #btn-pay{
     background-color: red;
@@ -280,9 +281,16 @@
         padding-left: 0px;
         padding-right: 0px;
     }
+    .btn-IWTMMH{
+       height: unset;
+        padding: 10px;
+    }
     .published-inpt{
         width: 70%;
        
+    }
+    .memorializeModal{
+        margin-top: 50px !important;
     }
     .btn-copy-link{
         width: 20%;

@@ -18,7 +18,7 @@ const HaikuCard = () => {
 
             <div className="haik-card">
                 <div className="haiku-card-text">
-                  Two Stages in life: <br /> Before you get glassed <br /> & shortly thereafter
+                  Two Stages in life: <br /> Before you get glasses <br /> & shortly thereafter
                 </div>
                 <div className="haiku-card-small-text">
                     -Warby Parker
