@@ -9,7 +9,7 @@ const HaikuCard = () => {
         <div className="haiku-cards text-center">
             <div className="haik-card">
                 <div className="haiku-card-text">
-                     Over the wintry Forest, <br /> wind howl in rage with no <br /> leaves to blow
+                     Over the wintry  <br /> Forest, wind howl in rage <br /> with no  leaves to blow
                 </div>
                 <div className="haiku-card-small-text">
                     -Nastune Soseki, “Over the Wintry”
@@ -18,7 +18,7 @@ const HaikuCard = () => {
 
             <div className="haik-card">
                 <div className="haiku-card-text">
-                  Two Stages in life: <br /> Before you get glasses <br /> & shortly thereafter
+                  Two Stages in life: <br /> Before you get glasses &  <br /> shortly thereafter
                 </div>
                 <div className="haiku-card-small-text">
                     -Warby Parker

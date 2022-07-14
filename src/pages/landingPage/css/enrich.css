@@ -1,7 +1,7 @@
 .banner4{
     padding: 80px;
     padding-bottom: 0px;
-    font-family: 'Didot', serif;
+    font-family: 'Arapey', serif;
 }
 .banner4-box{
     min-height: fit-content;
@@ -43,7 +43,7 @@
     margin-top: 30px;
 }
 .banner4-bold{
-    font-family: 'Didot', serif;
+    font-family: 'Arapey', serif;
     font-size: 35px;
     font-weight: 500;
     line-height: 48px;

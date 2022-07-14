@@ -12,6 +12,7 @@ import {FaLinkedin, FaEnvelope} from 'react-icons/fa'
 import {RiErrorWarningLine} from 'react-icons/ri'
 import Memorialize from '../../utils/memorialize';
 import {FacebookShareButton, LinkedinShareButton, TwitterShareButton, EmailShareButton} from 'react-share'
+import { Helmet } from 'react-helmet';
 
 import './css/haiku.css'
 
@@ -41,6 +42,8 @@ const Haiku = (props) => {
             }
         }
         getHaiku()
+
+        // document.querySelector('meta[name="description"]').setAttribute("content", `${data.line1}, ${data.line2}, ${data.line3}`);
         
     }, [])
 
@@ -55,6 +58,10 @@ const Haiku = (props) => {
     
     return ( 
         <div className="haiku" style={{backgroundImage:data.backgroundMode=="light"?"url(../../assets/lightBg.png)":"url(../../assets/darkBg.png)"}}>
+            <Helmet>
+             <meta name="description" content={`${data.line1}`} />
+             
+            </Helmet>
             <div className="haiku-header">
                 <img src="../../assets/logo.png" alt="logo" className='header-logo' />
                 <button className="pull-right btn-share" onClick={()=>setShowModal(true)}>
@@ -101,7 +108,7 @@ const Haiku = (props) => {
                             </span>
                         </LinkedinShareButton>
 
-                        <FacebookShareButton url={publishedUrl} quote={publishedUrl} >
+                        <FacebookShareButton url={publishedUrl} quote={'hello'} >
                             <span className="fabs">
                             <Fab style={{backgroundColor:'#3B5998', color:'white',  height:'40px', width:'40px'}}>
                                     <GrFacebookOption size={20} />
