@@ -59,7 +59,7 @@ const Haiku = (props) => {
     return ( 
         <div className="haiku" style={{backgroundImage:data.backgroundMode=="light"?"url(../../assets/lightBg.png)":"url(../../assets/darkBg.png)"}}>
             <Helmet>
-             <meta name="description" content={`${data.line1}`} />
+             <meta name="description" content={`${data.line1} haiks`} />
              
             </Helmet>
             <div className="haiku-header">
