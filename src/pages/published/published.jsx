@@ -1,7 +1,7 @@
 import React, {useState,  useRef, useEffect} from 'react';
 import { useNavigate, useSearchParams} from 'react-router-dom'
 import axios from 'axios'
-import joi from 'joi-browser'
+import {Link} from 'react-router-dom'
 import Memorialize from '../../utils/memorialize';
 import { getRemainingTime } from '../../utils/countdownTimer';
 import {appBaseUrl, apiUrl} from '../../config/config.json'
@@ -73,7 +73,9 @@ const Published = () => {
                 
             </div>
             <div className="published-pg-header">
-                <img src="../../assets/logo.png" alt="logo" className="header-logo" />
+                <Link to="/">
+                    <img src="../../assets/logo.png" alt="logo" className="header-logo" />
+                </Link>
             </div>
             <div className="published-body text-center">
                 <div className="published-header">Congratulations! Your HAIQ Shines</div>

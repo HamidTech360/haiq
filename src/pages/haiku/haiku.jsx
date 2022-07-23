@@ -9,7 +9,7 @@ import { Fab } from '@material-ui/core';
 import {GrFacebookOption} from 'react-icons/gr'
 import {AiOutlineTwitter, AiOutlineMail} from 'react-icons/ai'
 import {FaLinkedin, FaEnvelope} from 'react-icons/fa'
-import {RiErrorWarningLine} from 'react-icons/ri'
+import { Link } from 'react-router-dom';
 import Memorialize from '../../utils/memorialize';
 import {FacebookShareButton, LinkedinShareButton, TwitterShareButton, EmailShareButton} from 'react-share'
 import { Helmet } from 'react-helmet';
@@ -63,7 +63,9 @@ const Haiku = (props) => {
              
             </Helmet>
             <div className="haiku-header">
-                <img src="../../assets/logo.png" alt="logo" className='header-logo' />
+                <Link to="/">
+                    <img src="../../assets/logo.png" alt="logo" className='header-logo' />
+                </Link>
                 <button className="pull-right btn-share" onClick={()=>setShowModal(true)}>
                     <BsShareFill/> <span className="share" >SHARE</span>
                 </button>

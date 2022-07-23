@@ -174,7 +174,7 @@ const Memorialize = ({id, memorializeModal, handleMemorializeModal, enableCancel
             <Modal show={showCheckout} size="xl">
                 <div className="checkout-modal">
                     <div className="memorialize-modal-header text-center" id="checkout-header" >Memorialize your craft</div>
-                    <div className="payment-modal-text text-center">Keep Your Art, Forever...</div>
+                    <div className="payment-modal-text text-center">This is your modern masterpiece, attach it to the universe for all to view and forever feel</div>
                     <div className="checkout-price text-center">TOTAL: $100.00</div>
 
                     <div className="checkout-form">
