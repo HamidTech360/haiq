@@ -28,7 +28,7 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection,
     const [apiImages, setAPiImages] = useState([])
     const [lineErrorMsg, setLineErrorMsg] = useState({})
     const [syllableErrMsg, setSyllableErrMsg] = useState({})
-     const [syllableCount, setSyllableCount] = useState({
+    const [syllableCount, setSyllableCount] = useState({
         line1:{
             currentValue:0,
             maxValue:5
@@ -66,6 +66,7 @@ const CreateHaiku = ({handleChange, handleImgSelection, handleModalImgSelection,
         }
         getImages()
     },[])
+    
     const handleCloseModal = () => {
       setOpenModal(false);
     };

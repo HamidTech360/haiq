@@ -12,7 +12,7 @@ import {FaLinkedin, FaEnvelope} from 'react-icons/fa'
 import {RiErrorWarningLine} from 'react-icons/ri'
 import Modal from 'react-bootstrap/Modal'
 import {FacebookShareButton, LinkedinShareButton, TwitterShareButton, EmailShareButton} from 'react-share'
-
+import { Helmet } from 'react-helmet';
 //styles
 import './css/published.css'
 
@@ -69,6 +69,12 @@ const Published = () => {
    
     return ( 
         <div className="published">
+            <Helmet>
+                <title>title</title>
+                <meta name="description" content={'props.description'} />
+                <meta property="og:title" content={'props.title'} />
+                <meta property="og:description" content={'props.description'} />
+            </Helmet>
             <div className="hideOnDesktop hideOnMobile">
                 
             </div>
