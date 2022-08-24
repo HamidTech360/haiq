@@ -67,7 +67,6 @@
   },
   "reactSnapshot": {
     "include": [
-      "/haik/:id",
       "/published"
     ],
     "snapshotDelay": 300
