@@ -38,7 +38,7 @@ const Haiku = (props) => {
                 setMemorializeModal(response.data.data.expired)
             }catch(err){
                 console.log(err.response?.data); 
-                 navigate('/notfound')
+                //  navigate('/notfound')
             }
         }
         getHaiku()
@@ -58,10 +58,10 @@ const Haiku = (props) => {
     
     return ( 
         <div className="haiku" style={{backgroundImage:data.backgroundMode=="light"?"url(../../assets/lightBg.png)":"url(../../assets/darkBg.png)"}}>
-            <Helmet  >
+            {/* <Helmet  >
                 <meta name="description" content={`${data.line1} haiks`} />
                 <title>New haik</title>
-            </Helmet>
+            </Helmet> */}
             <div className="haiku-header">
                 <Link to="/">
                     <img src="../../assets/logo.png" alt="logo" className='header-logo' />
